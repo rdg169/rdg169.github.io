@@ -1,6 +1,5 @@
-.test {
-  display: flex;
-  .ciao {
-    flex: 1;
-  }
-}
+// global stuff
+@import "./constants.scss";
+
+// components
+@import "./components/site-header.scss";

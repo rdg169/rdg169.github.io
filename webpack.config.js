@@ -1,22 +1,41 @@
 const path = require('path');
 const NunjucksWebpackPlugin = require('nunjucks-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
     filename: "[name].css",
     disable: false
 });
 
-// const posts = require('./src/contents/');
+const posts = require('./src/contents/');
 
 const renderPages = () => {
-  const postPages = posts[0].map(post => {
-    return {
-      from: './src/html/index.njk',
-      to: `./posts/${post.slug}.html`,
-      context: post
+  const postPages = [];
+  Object.entries(posts).map(([postName, postContent]) => {
+    console.log(postName, postContent)
+    let item = {};
+    if (postName === 'homepage') {
+      postPages.push({
+        from: './src/html/homepage.njk',
+        to: './index.html',
+        context: postContent.en
+      });
+      postPages.push({
+        from: './src/html/homepage.njk',
+        to: './it/index.html',
+        context: postContent.it
+      });
+
+    } else {
+      item = {
+        from: `./src/html/${postName}.njk`,
+        to: `./posts/${post.slug}.html`,
+        context: post
+      }
     }
+    // postPages.push(item);
   });
+  console.log(postPages)
   return postPages;
 };
 
@@ -28,8 +47,14 @@ module.exports = {
   },
   plugins: [
     new NunjucksWebpackPlugin({
-        template: testerino
-    })
+      template: renderPages()
+    }),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      server: { baseDir: ['dist'] }
+    }),
+    extractSass
   ],
   module: {
     rules: [{
@@ -57,7 +82,4 @@ module.exports = {
         })
     }]
   },
-  plugins: [
-      extractSass
-  ]
 };

@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="{{meta.lang}}">
+<head>
+  <meta charset="utf-8">
+
+  <title>{{ meata.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{meta.description}}">
+  <meta name="author" content="Giovanni Rodighiero">
+
+  <link rel="stylesheet" href="../main.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  {% block siteHeader %}
+  {% endblock %}
+
+  {% block mainContent %}
+  {% endblock %}
+
+  <script src="../bundle.js"></script>
+</body>
+</html>
