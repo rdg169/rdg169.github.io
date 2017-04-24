@@ -5,25 +5,66 @@ html, body {
 
 .site-header {
   background-color: #009EDD;
-  color: white; }
+  color: white;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
 
 .site-header__left {
-  display: inline-block;
-  margin: 0 0 5px 10px;
-  width: 65%; }
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  padding-left: 10px;
+  width: 50%; }
 
 .site-nav {
-  width: 30%;
-  display: inline-block;
-  position: absolute;
-  right: 0; }
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  width: 70%;
+  height: 100%; }
 
 .site-nav__list {
   height: 100%;
   margin: 0;
   padding: 0;
-  padding-right: 10px; }
+  padding-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.site-nav__list-item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  text-align: right;
+  list-style: none;
+  padding: 0 10px; }
+
+.site-nav__link {
+  color: white;
+  text-decoration: none;
+  font-style: italic;
+  font-size: 1.2rem; }
 
 .site-header__title {
+  font-size: 2rem;
+  margin: 0; }
+  @media (max-width: 767px) {
+    .site-header__title {
+      position: absolute;
+      left: -9999999px; } }
+
+.site-header__short-title {
   font-size: 2rem;
   margin: 0; }

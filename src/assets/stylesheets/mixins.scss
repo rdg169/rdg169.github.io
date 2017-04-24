@@ -1,10 +1,16 @@
 // media queries
-$mobile: '480px';
-$tablet: '768px';
-$desktop: '1024px';
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin untilTablet {
+  @media (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
 
 @mixin smallMobile {
-  @media (min-width: '350px') and (max-width: #{$mobile - 1px}) {
+  @media (min-width: 350px) and (max-width: #{$mobile - 1px}) {
     @content;
   }
 }
@@ -14,4 +20,3 @@ $desktop: '1024px';
     @content;
   }
 }
-
