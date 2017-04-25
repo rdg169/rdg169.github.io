@@ -1,6 +1,5 @@
 const headerIt = {
   title: 'Web developer\'s thoughts',
-  subTitle: 'Guide, consigli e opioni di uno sviluppatore web.',
   links: [
     {
       label: 'Guide',
@@ -16,7 +15,6 @@ const headerIt = {
 const headerEn = {
   title: 'Web developer\'s thoughts',
   shortTitle: 'W.D.T.',
-  subTitle: 'Guides, tips and thoughts of a web developer.',
   links: [
     {
       label: 'Guides',

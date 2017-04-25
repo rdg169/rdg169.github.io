@@ -8,14 +8,21 @@
 
 .site-header__left {
   flex: 1 1 auto;
-  padding-left: 10px;
+  padding-left: 5%;
   width: 50%;
 }
 
 .site-nav {
   flex: 1 1 auto;
-  width: 70%;
+  width: 50%;
   height: 100%;
+  @include fromTablet {
+    box-sizing: border-box;
+    padding-right: 10%;
+  }
+  @include smallMobile {
+    width: 70%;
+  }
 }
 
 .site-nav__list {
@@ -29,22 +36,45 @@
 }
 
 .site-nav__list-item {
+  height: 100%;
   flex: 0 1 auto;
   text-align: right;
   list-style: none;
-  padding: 0 10px;
+  position: relative;
 }
 
 .site-nav__link {
+  height: 90%;
+  line-height: 3rem;
+  display: block;
   color: white;
   text-decoration: none;
   font-style: italic;
   font-size: 1.2rem;
+  padding: 0 10px;
+  &:hover {
+    border-bottom: 2px solid white;
+  }
+}
+
+.site-nav__link--active {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  right: 50%;
+  bottom: 5px;
+  border-radius: 50%;
+  transform: translateX(50%);
+  background-color: white;
 }
 
 .site-header__title {
   font-size: 2rem;
   margin: 0;
+  display: block;
+  height: 100%;
+  line-height: 3rem;
+  text-transform: capitalize;
   @include untilTablet {
     position: absolute;
     left: -9999999px;
@@ -54,4 +84,11 @@
 .site-header__short-title {
   font-size: 2rem;
   margin: 0;
+  display: block;
+  height: 100%;
+  line-height: 3rem;
+  @include fromTablet {
+    position: absolute;
+    left: -9999999px;
+  }
 }
