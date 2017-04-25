@@ -9,6 +9,8 @@ $orange: #DB5A42;
 $lightOrange: #E8AE68;
 
 // fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
 $baseSize: 16px;
 
 html, body {
@@ -16,4 +18,6 @@ html, body {
   padding: 0;
   font-size: $baseSize;
   height: 1000px;
+  line-height: 60px;
+  font-family: 'Nunito', sans-serif;
 }

@@ -1,4 +1,5 @@
 const header = require('./header');
+const posts = require('./posts/');
 
 const hero = {
   it: {
@@ -16,15 +17,22 @@ const hero = {
       mobile: './images/homepage-hero_v1.jpg'
     }
   }
+};
+
+const recentlyWrote = {
+  title: 'Most recent posts',
+  posts: posts.findByIds([0, 1, 3])
 }
 
 module.exports = {
   it: {
     header: Object.assign({}, header.it, { activePageIndex: -1 }),
-    hero: hero.it
+    hero: hero.it,
+    recentlyWrote
   },
   en: {
     header: Object.assign({}, header.en, { activePageIndex: -1 }),
-    hero: hero.en
+    hero: hero.en,
+    recentlyWrote
   }
 };

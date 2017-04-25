@@ -1,5 +1,7 @@
+const posts = require('./posts/');
 const homepage = require('./homepage.js');
 
 module.exports = {
-  homepage
+  homepage,
+  posts: posts.allPosts
 };

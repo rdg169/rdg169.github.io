@@ -41,6 +41,9 @@
   text-align: right;
   list-style: none;
   position: relative;
+  @include fromTablet {
+    padding-left: 30px;
+  }
 }
 
 .site-nav__link {
