@@ -1,0 +1,21 @@
+<footer class="footer">
+  <ul class="footer-sitemap">
+    {% for link in footer.sitemap %}
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="{{link.url}}">{{link.label}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="footer-social">
+    {% for social in footer.socials %}
+      <li class="footer-social__item">
+        <a class="footer-social__link" href="{{social.url}}">
+          <i class="footer-social__icon {{social.class}}"></i>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="footer__signature">
+    <p>{{footer.signature}}</p>
+  </div>
+</footer>

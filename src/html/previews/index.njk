@@ -1,9 +1,25 @@
 <section class="previews">
   <p class="previews__title">{{recentlyWrote.title}}</p>
-  {% for post in recentlyWrote.posts %}
-    <article class="preview">
-      <header class="preview__header">
-      </header>
-    </article>
-  {% endfor %}
+  <div class="previews__row">
+    {% for post in recentlyWrote.posts %}
+      <article class="preview">
+        <header class="preview__header">
+          <h2 class="preview__title">{{post.title}}</h2>
+          <p class="preview__short-descr">{{post.shortDescr}}</p>
+        </header>
+        <div class="preview__tags">
+          {% for figure in post.tags %}
+            <figure class="preview__tag">
+              <img src="{{figure.url}}">
+              <figcaption>{{figure.caption}}</figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+        <a class="preview__cta" href="/{{post.slug}}">Read more</a>
+        <footer class="preview__footer">
+          <p class="preview__signature">Posted by <a href="{{recentlyWrote.signatureUrl}}">Giovanni Rodighiero</a> on <time class="preview__date" datetime="{{post.date.value}}">{{post.date.label}}</time></p>
+        </footer>
+      </article>
+    {% endfor %}
+  </div>
 </section>

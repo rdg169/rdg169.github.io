@@ -1,5 +1,6 @@
-const header = require('./header');
-const posts = require('./posts/');
+const header = require('./mixins/header');
+const footer = require('./mixins/footer');
+const posts = require('./posts');
 
 const hero = {
   it: {
@@ -28,11 +29,13 @@ module.exports = {
   it: {
     header: Object.assign({}, header.it, { activePageIndex: -1 }),
     hero: hero.it,
-    recentlyWrote
+    recentlyWrote: Object.assign({}, recentlyWrote, { signatureUrl: '/it/about' }),
+    footer: footer.it
   },
   en: {
     header: Object.assign({}, header.en, { activePageIndex: -1 }),
     hero: hero.en,
-    recentlyWrote
+    recentlyWrote: Object.assign({}, recentlyWrote, { signatureUrl: '/about' }),
+    footer: footer.en
   }
 };

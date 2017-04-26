@@ -1,7 +1,11 @@
 const posts = require('./posts/');
 const homepage = require('./homepage.js');
+const postsIndex = { it: {}, en: {} };
 
 module.exports = {
-  homepage,
-  posts: posts.allPosts
+  pages: {
+    homepage,
+    postsIndex,
+  },
+  posts: posts.allPosts,
 };

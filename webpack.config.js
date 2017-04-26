@@ -7,7 +7,33 @@ const extractSass = new ExtractTextPlugin({
     disable: false
 });
 
-const posts = require('./src/contents/');
+const { pages, contents } = require('./src/contents/');
+
+const renderHomepage = () => {
+  return Object.entries(pages.homepage).map(([lang, content]) => {
+    if (lang === 'en')
+      return {
+        from: './src/html/homepage.njk',
+        to: './index.html',
+        context: content
+      };
+    return {
+      from: './src/html/homepage.njk',
+      to: `./${lang}/index.html`,
+      context: content
+    };
+  });
+};
+
+const renderAbout = () => {
+
+};
+
+const renderPostsIndex = () => {
+  return Object.entries(pages.postsIndex).map(([lang, content]) => {
+
+  });
+};
 
 const renderPages = () => {
   const postPages = [];
@@ -47,7 +73,7 @@ module.exports = {
   },
   plugins: [
     new NunjucksWebpackPlugin({
-      template: renderPages()
+      template: renderHomepage()
     }),
     new BrowserSyncPlugin({
       host: 'localhost',

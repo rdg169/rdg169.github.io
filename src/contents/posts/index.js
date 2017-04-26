@@ -3,7 +3,16 @@ const posts = [
     id: 0,
     title: '0 Tempor velit elit ipsum cillum duis esse ipsum',
     shortDescr: 'Eu in pariatur incididunt sit cupidatat proident consectetur in commodo pariatur deserunt anim sunt. Nostrud elit ad ea consectetur velit.',
-    thumb: 'https://source.unsplash.com/random/400x400'
+    date: {
+      value: '2017-04-26T16:01:27+01:00',
+      label: '26 April 2017'
+    },
+    tags: [
+      {
+        url: './images/tags/javascript.jpg',
+        caption: 'JavaScript'
+      }
+    ]
   },
   {
     id: 1,
