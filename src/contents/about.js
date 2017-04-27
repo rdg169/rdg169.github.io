@@ -15,33 +15,41 @@ const aboutMe = {
   it: {
     title: 'Bio',
     contents: [
-      'Giovanni Rodighiero',
-      'Italian Web developer, JavaScript fan',
-      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>'
+      'Giovanni Rodighiero.',
+      'Italian web developer, javascript fan.',
+      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>.'
     ]
   },
   en: {
     title: 'Bio',
     contents: [
-      'Giovanni Rodighiero',
-      'Italian Web developer, JavaScript fan',
-      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>'
+      'Giovanni Rodighiero.',
+      'Italian web developer, javascript fan.',
+      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>.'
     ]
   }
 };
 
+const contacts = {
+  it: {},
+  en: {
+    title: 'Contact me'
+  }
+}
 
 module.exports = {
   it: {
     header: Object.assign({}, header.it, { activePageIndex: 1 }),
     hero: hero.it,
     bio: aboutMe.it,
+    contacts: contacts.it,
     footer: footer.it
   },
   en: {
     header: Object.assign({}, header.en, { activePageIndex: 1 }),
     hero: hero.en,
     bio: aboutMe.en,
+    contacts: contacts.en,
     footer: footer.en
   }
 }

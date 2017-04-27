@@ -1,6 +1,7 @@
 .about-hero {
   text-align: center;
   margin: 30px 10%;
+  max-width: 1440px;
 }
 
 .about-hero__title {
@@ -13,8 +14,46 @@
   text-align: left;
   font-weight: normal;
   line-height: 35px;
+  font-size: 1.3rem;
 }
 
-.bio {
+.about-bio {
+  margin: 70px 10px;
+}
 
+.about-bio__title, .about-contacts__title {
+  width: 40%;
+  padding: 0 5px;
+  margin-left: 15px;
+  border-bottom: 1px solid $orange;  color: $orange;
+  font-size: 1.5rem;
+}
+
+.about-bio__paragraph {
+  font-size: 1.1rem;
+  text-align: left;
+  margin: 10px 100px;
+  line-height: 30px;
+}
+
+.about-contacts__contacts {
+  display: flex;
+  justify-content: center;
+}
+
+.about-contacts__contact {
+  flex: 0 0 auto;
+  width: 20%;
+  margin: 2.5%;
+}
+
+.about-contacts__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  svg {
+    width: 80px;
+    height: 80px;
+  }
 }

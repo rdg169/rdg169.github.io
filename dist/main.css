@@ -366,7 +366,8 @@ body {
 
 .about-hero {
   text-align: center;
-  margin: 30px 10%; }
+  margin: 30px 10%;
+  max-width: 1440px; }
 
 .about-hero__title {
   font-weight: normal;
@@ -376,4 +377,53 @@ body {
 .about-hero__subtitle {
   text-align: left;
   font-weight: normal;
-  line-height: 35px; }
+  line-height: 35px;
+  font-size: 1.3rem; }
+
+.about-bio {
+  margin: 70px 10px; }
+
+.about-bio__title, .about-contacts__title {
+  width: 40%;
+  padding: 0 5px;
+  margin-left: 15px;
+  border-bottom: 1px solid #DB5A42;
+  color: #DB5A42;
+  font-size: 1.5rem; }
+
+.about-bio__paragraph {
+  font-size: 1.1rem;
+  text-align: left;
+  margin: 10px 100px;
+  line-height: 30px; }
+
+.about-contacts__contacts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+
+.about-contacts__contact {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 20%;
+  margin: 2.5%; }
+
+.about-contacts__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80px; }
+  .about-contacts__link svg {
+    width: 80px;
+    height: 80px; }
