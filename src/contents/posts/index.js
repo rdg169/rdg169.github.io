@@ -9,7 +9,7 @@ const posts = [
     },
     tags: [
       {
-        url: './images/tags/javascript.jpg',
+        url: '/images/tags/javascript.jpg',
         caption: 'JavaScript'
       }
     ]

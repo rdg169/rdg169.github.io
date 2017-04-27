@@ -1,10 +1,71 @@
 .footer {
+  padding-top: 30px;
   width: 100%;
   height: 200px;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: left;
-  background-position-y: center;
-  background-image: url('https://source.unsplash.com/random/1280x400')
+  background-position-x: center;
+  background-position-y: bottom;
+  background-image: url('/images/homepage-hero_v0.jpg');
+}
+
+.footer-sitemap__link {
+  color: white;
+}
+
+.footer-sitemap {
+  display: flex;
+  margin: 0 10%;
+  padding: 0;
+}
+
+.footer-sitemap__item {
+  flex: 0 0 auto;
+  width: 33.3%;
+  justify-content: space-between;
+  text-align: center;
+  list-style: none;
+}
+
+.footer-sitemap__link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  &:hover {
+    border-bottom: 2px solid white;
+  }
+}
+
+.footer-social {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin: 30px auto;
+  padding: 0;
+}
+
+.footer-social__item {
+  flex: 1 1 auto;
+  text-align: center;
+  list-style: none;
+  width: 100%;
+}
+
+.footer-social__link {
+  text-align: center;
+  background-color: $lightBlue;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  svg {
+    position: absolute;
+    right: 50%;
+    top: 5px;
+    transform: translateX(50%);
+    fill: white;
+    width: 40px;
+    height: 40px;
+  }
 }

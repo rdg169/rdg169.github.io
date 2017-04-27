@@ -1,9 +1,10 @@
 const headerIt = {
   title: 'Web developer\'s thoughts',
+  home: '/it',
   links: [
     {
-      label: 'Guide',
-      url: '/it/guides/index.html'
+      label: 'Articoli',
+      url: '/it/posts.html'
     },
     {
       label: 'Su di me',
@@ -15,10 +16,11 @@ const headerIt = {
 const headerEn = {
   title: 'Web developer\'s thoughts',
   shortTitle: 'W.D.T.',
+  home: '/',
   links: [
     {
-      label: 'Guides',
-      url: '/en/guides/index.html'
+      label: 'Posts',
+      url: '/en/posts.html'
     },
     {
       label: 'About me',

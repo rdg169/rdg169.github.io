@@ -13,12 +13,12 @@ const renderHomepage = () => {
   return Object.entries(pages.homepage).map(([lang, content]) => {
     if (lang === 'en')
       return {
-        from: './src/html/homepage.njk',
+        from: './src/html/homepage/index.njk',
         to: './index.html',
         context: content
       };
     return {
-      from: './src/html/homepage.njk',
+      from: './src/html/homepage/index.njk',
       to: `./${lang}/index.html`,
       context: content
     };
@@ -26,12 +26,22 @@ const renderHomepage = () => {
 };
 
 const renderAbout = () => {
-
+  return Object.entries(pages.about).map(([lang, content]) => {
+    return {
+      from: './src/html/about/index.njk',
+      to: `./${lang}/about.html`,
+      context: content
+    };
+  });
 };
 
 const renderPostsIndex = () => {
   return Object.entries(pages.postsIndex).map(([lang, content]) => {
-
+    return {
+      from: './src/html/postsIndex/index.njk',
+      to: `./${lang}/posts.html`,
+      context: content
+    }
   });
 };
 
@@ -42,12 +52,12 @@ const renderPages = () => {
     let item = {};
     if (postName === 'homepage') {
       postPages.push({
-        from: './src/html/homepage.njk',
+        from: './src/html/homepage/index.njk',
         to: './index.html',
         context: postContent.en
       });
       postPages.push({
-        from: './src/html/homepage.njk',
+        from: './src/html/homepage/index.njk',
         to: './it/index.html',
         context: postContent.it
       });
@@ -65,6 +75,8 @@ const renderPages = () => {
   return postPages;
 };
 
+const pagesToRender = renderHomepage().concat(renderPostsIndex()).concat(renderAbout());
+
 module.exports = {
   entry: './src/assets/index.js',
   output: {
@@ -73,7 +85,7 @@ module.exports = {
   },
   plugins: [
     new NunjucksWebpackPlugin({
-      template: renderHomepage()
+      template: pagesToRender
     }),
     new BrowserSyncPlugin({
       host: 'localhost',

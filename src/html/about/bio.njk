@@ -1,0 +1,6 @@
+<section class="about-bio">
+  <h3 class="about-bio__title">{{bio.title}}</h3>
+  {% for par in bio.contents %}
+    <p class="about-bio__paragraph">{{par | safe}}</p>
+  {% endfor %}
+</section>

@@ -22,6 +22,10 @@ const hero = {
 
 const recentlyWrote = {
   title: 'Most recent posts',
+  cta: {
+    url: '/en/posts.html',
+    label: 'See all'
+  },
   posts: posts.findByIds([0, 1, 3])
 }
 

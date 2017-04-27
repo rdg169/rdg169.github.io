@@ -6,11 +6,11 @@ module.exports = {
         label: 'Homepage'
       },
       {
-        url: '/it/posts',
+        url: '/it/posts.html',
         label: 'Articoli'
       },
       {
-        url: '/it/about',
+        url: '/it/about.html',
         label: 'Su di me'
       }
     ],
@@ -23,14 +23,15 @@ module.exports = {
         label: 'Homepage'
       },
       {
-        url: '/posts',
+        url: '/en/posts.html',
         label: 'Posts'
       },
       {
-        url: '/about',
+        url: '/en/about.html',
         label: 'About me'
       }
     ],
-    socials: []
+    socials: [],
+    signature: ''
   }
 };
