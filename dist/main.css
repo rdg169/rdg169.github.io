@@ -91,7 +91,7 @@ body {
     color: #009EDD; }
 
 .site-nav__link {
-  height: 90%;
+  height: 100%;
   line-height: 3rem;
   display: block;
   color: white;
@@ -396,11 +396,16 @@ body {
   text-align: left;
   margin: 10px 100px;
   line-height: 30px; }
+  @media (min-width: 300px) and (max-width: 479px) {
+    .about-bio__paragraph {
+      margin: 10px 30px; } }
 
 .about-contacts__contacts {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
@@ -409,8 +414,16 @@ body {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  width: 20%;
-  margin: 2.5%; }
+  width: 10%;
+  margin: 2.5% 7.5%; }
+  @media (min-width: 480px) and (max-width: 767px) {
+    .about-contacts__contact {
+      width: 40%;
+      margin: 2.5% 5%; } }
+  @media (min-width: 300px) and (max-width: 479px) {
+    .about-contacts__contact {
+      width: 80%;
+      margin: 5% 10%; } }
 
 .about-contacts__link {
   display: -webkit-box;
@@ -423,7 +436,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 80px; }
+  width: 80px;
+  color: #009EDD;
+  text-decoration: none;
+  font-style: italic;
+  margin: 0 auto; }
   .about-contacts__link svg {
+    background-color: #009EDD;
+    fill: white;
     width: 80px;
     height: 80px; }

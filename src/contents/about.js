@@ -33,7 +33,7 @@ const aboutMe = {
 const contacts = {
   it: {},
   en: {
-    title: 'Contact me'
+    title: 'Contact me',
   }
 }
 

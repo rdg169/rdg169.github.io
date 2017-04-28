@@ -7,7 +7,7 @@ const extractSass = new ExtractTextPlugin({
     disable: false
 });
 
-const { pages, contents } = require('./src/contents/');
+const { pages, postsEn } = require('./src/contents/');
 
 const renderHomepage = () => {
   return Object.entries(pages.homepage).map(([lang, content]) => {
@@ -45,37 +45,18 @@ const renderPostsIndex = () => {
   });
 };
 
-const renderPages = () => {
-  const postPages = [];
-  Object.entries(posts).map(([postName, postContent]) => {
-    console.log(postName, postContent)
-    let item = {};
-    if (postName === 'homepage') {
-      postPages.push({
-        from: './src/html/homepage/index.njk',
-        to: './index.html',
-        context: postContent.en
-      });
-      postPages.push({
-        from: './src/html/homepage/index.njk',
-        to: './it/index.html',
-        context: postContent.it
-      });
-
-    } else {
-      item = {
-        from: `./src/html/${postName}.njk`,
-        to: `./posts/${post.slug}.html`,
-        context: post
-      }
+const renderEnPosts = () => {
+  return postsEn.map(content => {
+    console.log(content);
+    return {
+      from: './src/html/postDetail/index.njk',
+      to: `.${content.slug}.html`,
+      context: content
     }
-    // postPages.push(item);
   });
-  console.log(postPages)
-  return postPages;
-};
+}
 
-const pagesToRender = renderHomepage().concat(renderPostsIndex()).concat(renderAbout());
+const pagesToRender = renderHomepage().concat(renderPostsIndex(), renderAbout(), renderEnPosts());
 
 module.exports = {
   entry: './src/assets/index.js',

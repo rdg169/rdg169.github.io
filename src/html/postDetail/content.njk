@@ -1,0 +1,5 @@
+<section class="post">
+  {% for content in contents %}
+    {{content | safe | escape | nl2br}}
+  {% endfor %}
+</section>

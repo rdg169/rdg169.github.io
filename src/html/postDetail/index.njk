@@ -1,0 +1,12 @@
+{% extends "../layout.njk" %}
+
+{% block siteHeader %}
+  {% include "../header/index.njk" %}
+{% endblock %}
+
+{% block mainContent %}
+  <article>
+    {% include "./hero.njk" %}
+    {% include "./content.njk" %}
+  </article>
+{% endblock %}

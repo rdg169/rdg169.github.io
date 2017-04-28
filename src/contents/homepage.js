@@ -21,25 +21,27 @@ const hero = {
 };
 
 const recentlyWrote = {
-  title: 'Most recent posts',
-  cta: {
-    url: '/en/posts.html',
-    label: 'See all'
-  },
-  posts: posts.findByIds([0, 1, 3])
+  en: {
+    title: 'Most recent posts',
+    cta: {
+      url: '/en/posts.html',
+      label: 'See all'
+    },
+    posts: posts.findByIds([0], 'en')
+  }
 }
 
 module.exports = {
   it: {
     header: Object.assign({}, header.it, { activePageIndex: -1 }),
     hero: hero.it,
-    recentlyWrote: Object.assign({}, recentlyWrote, { signatureUrl: '/it/about' }),
+    recentlyWrote: Object.assign({}, recentlyWrote.it, { signatureUrl: '/it/about' }),
     footer: footer.it
   },
   en: {
     header: Object.assign({}, header.en, { activePageIndex: -1 }),
     hero: hero.en,
-    recentlyWrote: Object.assign({}, recentlyWrote, { signatureUrl: '/about' }),
+    recentlyWrote: Object.assign({}, recentlyWrote.en, { signatureUrl: '/about' }),
     footer: footer.en
   }
 };
