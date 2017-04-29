@@ -52,35 +52,38 @@
     
   <article>
     <section class="post-hero">
-  <div class="post-hero__image post-hero__image--mobile" style="background-image: url('')"></div>
   <h1 class="post-hero__title">Javascript ES6 must-know features: const &amp; let variables</h1>
+  <h2 class="post-hero__subtitle">A guide about the most important features of Javascript ECMAScript 6. This article is the first of a three part serie and it is about const &amp; let variables: how they works and when to use them.</h2>
 </section>
     <section class="post">
   
-    <p>One of the main feature of ECMAScript 6 is the introduction of two new types of variables: <strong>const</strong> and <strong>let.</strong></p><br />
-    <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means that they live and are available only inside the block in which are defined and in his child ones.&nbsp;</p><br />
+    <p>One of the main feature of ECMAScript 6 is the introduction of two new types of variables: <strong>const</strong> and <strong>let.</strong></p>
+    <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means they live and are available <b>only</b> inside the block in which they are defined and in his children.&nbsp;</p>
     <p>Let's make an example:</p>
   
-    <code class=""><br />
-      if (true) {<br />
-        // this is a block<br />
-      }<br />
-      if (true)<br />
-        // this is not<br />
-      while (true) {<br />
-        // this a block<br />
-      }<br />
-<br />
-      // a tricky one now<br />
-      switch (name) {<br />
-        case 'Mike': // NOT a block<br />
-          ... some code<br />
-          return true;<br />
-        case 'Pit': { // a block<br />
-          return false;<br />
-        }<br />
-      }<br />
-    </code><br />
+    <pre><code class="javascript post__code">
+      if (true) {
+        // this is a block
+      }
+
+      if (true)
+        // this is not
+
+      while (true) {
+        // this a block
+      }
+
+      // a tricky one now
+      switch (name) {
+        case 'Mike': // NOT a block
+          ... some code
+          return true;
+        case 'Pit': { // a block
+          return false;
+        }
+      }
+    </pre></code>
+    <p class="post__caption">recognise a javascript's block</p>
     
   
 </section>
@@ -133,7 +136,6 @@
 </footer>
   
 
-  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   <script src="/bundle.js"></script>
 </body>
 </html>

@@ -76,7 +76,12 @@ module.exports = {
     extractSass
   ],
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
         test: /\.scss$/,
         use: extractSass.extract({
           use: [
@@ -99,6 +104,7 @@ module.exports = {
           // use style-loader in development
           fallback: "style-loader"
         })
-    }]
+      }
+    ]
   },
 };

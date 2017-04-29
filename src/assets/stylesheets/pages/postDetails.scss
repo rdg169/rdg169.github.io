@@ -1,0 +1,42 @@
+.post-hero {
+  text-align: center;
+}
+
+.post-hero__title {
+  font-size: 3rem;
+  color: $orange;
+  margin: 50px 40px;
+}
+
+.post-hero__subtitle {
+  font-size: 2rem;
+  font-weight: normal;
+  width: 70%;
+  margin: 10px auto;
+  line-height: 50px;
+}
+
+.post {
+  max-width: 1000px;
+  text-align: center;
+  margin: 50px auto;
+  p {
+    line-height: 30px;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+}
+
+.post__code {
+  text-align: left;
+  line-height: 25px;
+}
+
+.post__caption {
+  color: $darkGrey;
+  text-align: center !important;
+  font-size: 0.9rem !important;
+  margin-top: -15px !important;
+  font-style: italic;
+}

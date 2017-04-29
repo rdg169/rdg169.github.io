@@ -7,7 +7,7 @@ const postEn = {
   id: 0,
   slug: '/en/posts/const-and-let-variables',
   title: 'Javascript ES6 must-know features: const & let variables',
-  shortDescr: 'A guide about the most important features of Javascript ECMAScript 6, this article is the first of a three part serie and is about const & let variables: how they works and when to use them.',
+  shortDescr: 'A guide about the most important features of Javascript ECMAScript 6. This article is the first of a three part serie and it is about const & let variables: how they works and when to use them.',
   tags: [
     {
       url: '/images/tags/javascript.jpg',
@@ -16,14 +16,17 @@ const postEn = {
   ],
   contents: [
     `<p>One of the main feature of ECMAScript 6 is the introduction of two new types of variables: <strong>const</strong> and <strong>let.</strong></p>
-    <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means that they live and are available only inside the block in which are defined and in his child ones.&nbsp;</p>
-    <p>Let's make an example:</p>`,
-    `<code class="">
+    <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means they live and are available <b>only</b> inside the block in which they are defined and in his children.&nbsp;</p>`
+    `So, before move on it is better to clarify what a block`,
+    `<p>Let's make an example:</p>`,
+    `<pre><code class="javascript post__code">
       if (true) {
         // this is a block
       }
+
       if (true)
         // this is not
+
       while (true) {
         // this a block
       }
@@ -37,7 +40,8 @@ const postEn = {
           return false;
         }
       }
-    </code>
+    </pre></code>
+    <p class="post__caption">recognise a javascript's block</p>
     `
   ]
 };
