@@ -47,7 +47,6 @@ const renderPostsIndex = () => {
 
 const renderEnPosts = () => {
   return postsEn.map(content => {
-    console.log(content);
     return {
       from: './src/html/postDetail/index.njk',
       to: `.${content.slug}.html`,

@@ -1,6 +1,6 @@
 <section class="posts">
   <div class="posts__row">
-    {% for post in posts.contents %}
+    {% for post in posts %}
       <article class="preview">
         <header class="preview__header">
           <h2 class="preview__title">{{post.title}}</h2>
@@ -9,11 +9,12 @@
         <div class="preview__tags">
           {% for figure in post.tags %}
             <figure class="preview__tag">
+              <img src="{{figure.url}}" alt="{{figure.caption}}" title="{{figure.caption}}">
               <figcaption>{{figure.caption}}</figcaption>
             </figure>
           {% endfor %}
         </div>
-        <a class="preview__cta button" href="/{{post.slug}}">Read more</a>
+        <a class="preview__cta button" href="{{post.slug}}.html">Read more</a>
         <footer class="preview__footer">
           <p class="preview__signature">Posted by <a href="{{posts.signatureUrl}}">Giovanni Rodighiero</a> on <time class="preview__date" datetime="{{post.date.value}}">{{post.date.label}}</time></p>
         </footer>

@@ -10,7 +10,7 @@
         <div class="preview__tags">
           {% for figure in post.tags %}
             <figure class="preview__tag">
-              <img src="{{figure.url}}">
+              <img src="{{figure.url}}" alt="{{figure.caption}}" title="{{figure.caption}}">
               <figcaption>{{figure.caption}}</figcaption>
             </figure>
           {% endfor %}

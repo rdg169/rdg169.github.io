@@ -69,3 +69,26 @@
     height: 40px;
   }
 }
+
+.footer-policies {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.footer-policies__item {
+  flex: 0 0 auto;
+  width: 50%;
+  text-align: center;
+  list-style: none;
+}
+
+.footer-policies__link {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    border-bottom: 2px solid white;
+  }
+}

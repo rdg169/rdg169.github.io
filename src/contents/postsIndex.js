@@ -11,26 +11,17 @@ const hero = {
   }
 };
 
-const allPosts = {
-  it: {
-    contents: posts.allPosts
-  },
-  en: {
-    contents: posts.allPosts
-  }
-}
-
 module.exports = {
   it: {
     header: Object.assign({}, header.it, { activePageIndex: 0 }),
     hero: hero.it,
-    posts: allPosts.it,
+    posts: posts.it,
     footer: footer.it
   },
   en: {
     header: Object.assign({}, header.en, { activePageIndex: 0 }),
     hero: hero.en,
-    posts: allPosts.en,
+    posts: posts.en,
     footer: footer.en
   }
 }
