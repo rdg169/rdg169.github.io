@@ -1,6 +1,14 @@
 const header = require('./mixins/header');
 const footer = require('./mixins/footer');
 
+const meta = {
+  en: {
+    title: 'About | Web Developer\'s Thoughts',
+    keywords: 'about me web developer guide tutorial javascript ecmascript6 es6',
+    description: 'About, personal informations, contacts of author of guides, tutorials and tips on web development\'s languages, frameworks and related technologies'
+  }
+}
+
 const hero = {
   it: {
     title: ''
@@ -46,6 +54,7 @@ module.exports = {
     footer: footer.it
   },
   en: {
+    meta: meta.en,
     header: Object.assign({}, header.en, { activePageIndex: 1 }),
     hero: hero.en,
     bio: aboutMe.en,

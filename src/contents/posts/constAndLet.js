@@ -2,6 +2,11 @@ const header = require('../mixins/header');
 const footer = require('../mixins/footer');
 // https://github.com/isagalaev/highlight.js/
 const postEn = {
+  meta: {
+    title: 'Javascript ES6 must-know features: const & let variables  | Web Developer\'s Thoughts',
+    keywords: 'posts articles web developer guide tutorial javascript ecmascript6 es6',
+    description: 'A guide about the most important features of Javascript ECMAScript 6. This article is about const & let variables: how they works and when to use them.'
+  },
   header: header.en,
   footer: footer.en,
   id: 0,
@@ -12,7 +17,7 @@ const postEn = {
   signatureUrl: '/en/about.html',
   slug: '/en/posts/const-and-let-variables',
   title: 'Javascript ES6 must-know features: const & let variables',
-  shortDescr: 'A guide about the most important features of Javascript ECMAScript 6. This article is the first of a three part serie and it is about const & let variables: how they works and when to use them.',
+  shortDescr: 'A guide about the most important features of Javascript ECMAScript 6. This article is about const & let variables: how they works and when to use them.',
   tags: [
     {
       url: '/images/tags/javascript.jpg',

@@ -2,6 +2,14 @@ const header = require('./mixins/header');
 const footer = require('./mixins/footer');
 const posts = require('./posts');
 
+const meta = {
+  en: {
+    title: 'Web Developer\'s Thoughts',
+    keywords: 'web developer guide tutorial javascript ecmascript6 es6',
+    description: 'Guides, tutorials and tips on web development\'s languages, frameworks and related technologies'
+  }
+}
+
 const hero = {
   it: {
     title: 'Guide, consigli e opioni di uno sviluppatore web.',
@@ -39,6 +47,7 @@ module.exports = {
     footer: footer.it
   },
   en: {
+    meta: meta.en,
     header: Object.assign({}, header.en, { activePageIndex: -1 }),
     hero: hero.en,
     recentlyWrote: Object.assign({}, recentlyWrote.en, { signatureUrl: '/about' }),
