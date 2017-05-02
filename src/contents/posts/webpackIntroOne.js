@@ -34,17 +34,17 @@ const postEn = {
       <li>Compile your html template (pug/jade, nunjucks, handlebars ...) into standard html</li>
     </ul>`,
     `<p>In this article we are going to write a basic pipeline which can take care of executing the tasks listed above, and to achieve this we are using <a href="https://webpack.js.org/" target="_blank">Webpack 2</a>, a module bundler that is becoming one of the most popular frameworks to build this kind stuff.</p>`,
-    `<p>The first to know about Webpack is that it is not a proper task runner like <a href="http://gulpjs.com/" target="_blank">Gulp.js</a>, Webpack is a module bundler, that means its job is to take all your splitted files and put them together with the logic and constrains you decided in your config file.</p>`,
-    `<p>Let's start writing some code so all will make more sense, we begin with simple stuff:</p>`,
+    `<p>The first to know about Webpack is that it is not a proper task runner like <a href="http://gulpjs.com/" target="_blank">Gulp.js</a>, Webpack is a module bundler, that means its job is to take all your splitted files and put them together with the logic and constraints you decided in your config file.</p>`,
+    `<p>Let's start writing some code so all will make more sense, we begin with creating the basic project structure:</p>`,
     `<ul>
       <li>Create a new folder for the project;</li>
       <li>Inside that folder create two more folders: <b>src</b> (for all our assets) and <b>dist</b> (for the output);</li>
       <li>In the project root create a javascript file that is going to contain the webpack config, usually it is called <b>webpack.config.js</b>, but you can choose whatever you prefer (this is not <a href="https://en.wikipedia.org/wiki/Convention_over_configuration" target="_blank">COF</a>);</li>
     </ul>`,
     `<p>The easiest part to achieve with webpack is bundling together javascript files, this will be our first goal.
-    So let's create a <b>index.js</b> file and a <b>javascript</b> folder with and <b>index.js</b> in it, all inside <b>src</b>, in order to have this folders structure:</p>`,
+    So let's create a <b>index.js</b> file and a <b>javascript</b> folder with an <b>index.js</b> in it, all inside <b>src</b>, in order to have this folders structure:</p>`,
     `<img src="/images/posts/webpackIntroOne_0.jpg" />`,
-    `<p>Now we can start configuring webpack, you can install it with <code>$ npm install webpack --save-dev </code>, then open <b>webpack.config.js</b> and export an object as described in the module docs:</p>`,
+    `<p>Now we can start configuring webpack, you can install it with <code>$ npm install webpack --save-dev </code>, then open <b>webpack.config.js</b> and export an object as described in the docs:</p>`,
     `<pre><code class="javascript post__code">
       module.exports = {
         entry: './app.js',
@@ -89,7 +89,8 @@ const postEn = {
       bar();
     </pre></code>
     <p class="post__caption">.src/javascript/index.js</p>`,
-    `<p>Run <code>$ ./node_modules/.bin/webpack</code> again and this time you'll see the imported code copied into the bundle file. Now you can link this file in your HTML and see the logs produced by the two functions.</p>`
+    `<p>Run <code>$ ./node_modules/.bin/webpack</code> again and this time you'll see the imported code copied into the bundle file. Now you can link this file in your HTML and see the logs produced by the two functions.</p>`,
+    `<p>Checkout the part two of this article where we start to handle our stylesheets</p>`
   ]
 };
 
