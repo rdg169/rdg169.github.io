@@ -40,13 +40,17 @@
   margin: 50px auto;
   p {
     line-height: 30px;
-    margin: 20px 0;
+    margin: 40px 0;
     font-size: 1.2rem;
     text-align: left;
   }
   @include untilDesktop {
     margin-left: 5%;
     margin-right: 5%;
+  }
+  li {
+    line-height: 30px;
+    text-align: left;
   }
 }
 

@@ -532,13 +532,16 @@ main {
   margin: 50px auto; }
   .post p {
     line-height: 30px;
-    margin: 20px 0;
+    margin: 40px 0;
     font-size: 1.2rem;
     text-align: left; }
   @media (max-width: 1023px) {
     .post {
       margin-left: 5%;
       margin-right: 5%; } }
+  .post li {
+    line-height: 30px;
+    text-align: left; }
 
 .post__code {
   text-align: left;

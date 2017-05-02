@@ -35,7 +35,7 @@ const recentlyWrote = {
       url: '/en/posts.html',
       label: 'See all'
     },
-    posts: posts.findByIds([0], 'en')
+    posts: posts.findByIds([0, 1], 'en')
   }
 }
 
