@@ -3,7 +3,7 @@ const footer = require('../mixins/footer');
 
 const postEn = {
   meta: {
-    title: 'Frontend pipeline introduction with webpack 2 | Web Developer\'s Thoughts',
+    title: 'Frontend pipeline introduction with webpack 2: setting up babel (1 of 3) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2.'
   },
@@ -16,7 +16,7 @@ const postEn = {
   },
   signatureUrl: '/en/about.html',
   slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2',
-  title: 'Frontend pipeline introduction with webpack 2',
+  title: 'Frontend pipeline introduction with webpack 2: setting up babel (1 of 3)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2.',
   tags: [
     {
@@ -25,16 +25,18 @@ const postEn = {
     }
   ],
   contents: [
+    `<h3>Introduction</h3>`,
     `<p>In case you don't know it, a frontend pipeline is a set of instructions useful to automate some tasks you usually perform on your assets before going to production, or while developing to make the development itself easier and faster.
     Here's some examples, just to give the idea:</p>`,
     `<ul>
       <li>Compile .scss/.sass into .css</li>
       <li>Minify your code</li>
-      <li>Copy all your splitted code into a single file (usually for javscripts file)</li>
+      <li>Copy all your splitted code into a single file (usually for javascripts file)</li>
       <li>Compile your html template (pug/jade, nunjucks, handlebars ...) into standard html</li>
     </ul>`,
     `<p>In this article we are going to write a basic pipeline which can take care of executing the tasks listed above and to achieve this we are using <a href="https://webpack.js.org/" target="_blank">Webpack 2</a>, a module bundler that is becoming one of the most popular frameworks to build this kind stuff.</p>`,
     `<p>The first thing to know about Webpack is that it is not a proper task runner like <a href="http://gulpjs.com/" target="_blank">Gulp.js</a>, Webpack is a module bundler, that means its job is to take all your splitted files and put them together with the logic and constraints you decided in your config file.</p>`,
+    `<h3>Bundle javacript file together</h3>`,
     `<p>Let's start writing some code so all will make more sense, we begin with the creation of a basic project structure:</p>`,
     `<ul>
       <li>Create a new folder for the project;</li>
@@ -92,7 +94,46 @@ const postEn = {
     </pre></code>
     <p class="post__caption">.src/javascript/index.js</p>`,
     `<p>Run <code>$ ./node_modules/.bin/webpack</code> again and this time you'll see the imported code copied into the bundle file. Now you can link this file in your HTML and see the logs produced by the two functions.</p>`,
-    `<p>Checkout the part two of this article where we start to handle our stylesheets</p>`
+    `<h3>Add Babel traspiler</h3>`,
+    `<p>Now that we have a pipeline that can understand the import/export logic, we can move on adding some useful modules to speed up our developing routine, a very common one is <a href="">Babel</a> traspiler that allows us to write ES6 syntax without browser compatibility issues.</p>`,
+    `<p>Webpack is capable of understanding a large variety of modules, written in likewise of languages through <b>loaders</b>: a loader basically instructs webpack how to treat a file of a language it natively doesn't understand ( != javascript ) and/or how to perform some actions on it. <br>
+    In our case we need a loader to handle ES6 syntax, specifically <a href="https://github.com/babel/babel-loader" target="_blank">Babel-loader</a>, so we can transpile ES6 to "native" javascript before putting the result in the <b>bundle.js</b> file.</p>`,
+    `<p>As written on the loader's docs, we need to install a couple of node_modules <code>$ npm install --save-dev babel-loader babel-core babel-preset-env</code> like that, then we need to edit our <b>webpack.config.js</b> file to configure in which files webpack has to apply the loader:</p>`,
+    `<pre><code class="javascript post__code">
+      module.exports = {
+        // webpack.config.js
+        entry: './src/index.js',
+        output: {
+          filename: 'bundle.js',
+          path: './dist'
+        },
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['env']
+                }
+              }
+            }
+          ]
+        }
+      }
+    </pre></code>
+    <p class="post__caption">webpack.config.js</p>`,
+    `<ul>
+      <li><code>test</code>: is a regex to use in order to identify the files affected by the loader;</li>
+      <li><code>exclude</code>: another regex to use as blacklist to contains all the files or folder you don't want to be affected by the loader, in our case we don't want to apply babel transpiling to the node_module stuff of course;</li>
+      <li><code>use</code>: which loader to use;</li>
+      <li><code>options</code>: options of the loader, we specify babel to use 'env' presets of rules, refer the babel docs for more infos about this;</li>
+    </ul>`,
+    `<p>And basically we are done with it ! If you start writing some ES6 code in your .js files and then run webpack, as we did previously, you'll se that in your <b>bundle.js</b> file what you wrote has been traspiled to be fully understandable by all browsers.</p>`,
+    `<h3>Conclusions</h3>`,
+    `<p>By now you should be able to create basic pipeline with webpack and have a general idea of a loader works.</p>`,
+    `<p>Checkout the next <a href="#">part of this serie</a> where we are going to handle our stylesheets, compiling .sass/.scss into regular .css and more!</p>`
   ]
 };
 

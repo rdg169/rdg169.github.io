@@ -542,6 +542,8 @@ main {
   .post li {
     line-height: 30px;
     text-align: left; }
+  .post img {
+    max-width: 100%; }
 
 .post__code {
   text-align: left;
