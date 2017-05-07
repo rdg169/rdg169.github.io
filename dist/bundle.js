@@ -3665,13 +3665,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_highlight_js_lib_highlight___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_highlight_js_lib_highlight__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_lib_languages_javascript__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_highlight_js_lib_languages_javascript___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_highlight_js_lib_languages_javascript__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highlight_js_styles_atom_one_dark_css__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highlight_js_styles_atom_one_dark_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highlight_js_styles_atom_one_dark_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highlight_js_lib_languages_css__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highlight_js_lib_languages_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highlight_js_lib_languages_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highlight_js_lib_languages_xml__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highlight_js_lib_languages_xml___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_highlight_js_lib_languages_xml__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highlight_js_styles_atom_one_dark_css__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highlight_js_styles_atom_one_dark_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_highlight_js_styles_atom_one_dark_css__);
+
+
 
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_highlight_js_lib_highlight___default.a.registerLanguage('javascript', __WEBPACK_IMPORTED_MODULE_1_highlight_js_lib_languages_javascript___default.a);
+__WEBPACK_IMPORTED_MODULE_0_highlight_js_lib_highlight___default.a.registerLanguage('css', __WEBPACK_IMPORTED_MODULE_2_highlight_js_lib_languages_css___default.a);
+__WEBPACK_IMPORTED_MODULE_0_highlight_js_lib_highlight___default.a.registerLanguage('xml', __WEBPACK_IMPORTED_MODULE_3_highlight_js_lib_languages_xml___default.a);
 
 const highlightCode = () => {
   const nodes = document.querySelectorAll('pre code');
@@ -3679,6 +3687,223 @@ const highlightCode = () => {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (highlightCode);
+
+/***/ }),
+/* 16 */,
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
+  var RULE = {
+    begin: /[A-Z\_\.\-]+\s*:/, returnBegin: true, end: ';', endsWithParent: true,
+    contains: [
+      {
+        className: 'attribute',
+        begin: /\S/, end: ':', excludeEnd: true,
+        starts: {
+          endsWithParent: true, excludeEnd: true,
+          contains: [
+            {
+              begin: /[\w-]+\(/, returnBegin: true,
+              contains: [
+                {
+                  className: 'built_in',
+                  begin: /[\w-]+/
+                },
+                {
+                  begin: /\(/, end: /\)/,
+                  contains: [
+                    hljs.APOS_STRING_MODE,
+                    hljs.QUOTE_STRING_MODE
+                  ]
+                }
+              ]
+            },
+            hljs.CSS_NUMBER_MODE,
+            hljs.QUOTE_STRING_MODE,
+            hljs.APOS_STRING_MODE,
+            hljs.C_BLOCK_COMMENT_MODE,
+            {
+              className: 'number', begin: '#[0-9A-Fa-f]+'
+            },
+            {
+              className: 'meta', begin: '!important'
+            }
+          ]
+        }
+      }
+    ]
+  };
+
+  return {
+    case_insensitive: true,
+    illegal: /[=\/|'\$]/,
+    contains: [
+      hljs.C_BLOCK_COMMENT_MODE,
+      {
+        className: 'selector-id', begin: /#[A-Za-z0-9_-]+/
+      },
+      {
+        className: 'selector-class', begin: /\.[A-Za-z0-9_-]+/
+      },
+      {
+        className: 'selector-attr',
+        begin: /\[/, end: /\]/,
+        illegal: '$'
+      },
+      {
+        className: 'selector-pseudo',
+        begin: /:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+/
+      },
+      {
+        begin: '@(font-face|page)',
+        lexemes: '[a-z-]+',
+        keywords: 'font-face page'
+      },
+      {
+        begin: '@', end: '[{;]', // at_rule eating first "{" is a good thing
+                                 // because it doesn’t let it to be parsed as
+                                 // a rule set but instead drops parser into
+                                 // the default mode which is how it should be.
+        illegal: /:/, // break on Less variables @var: ...
+        contains: [
+          {
+            className: 'keyword',
+            begin: /\w+/
+          },
+          {
+            begin: /\s/, endsWithParent: true, excludeEnd: true,
+            relevance: 0,
+            contains: [
+              hljs.APOS_STRING_MODE, hljs.QUOTE_STRING_MODE,
+              hljs.CSS_NUMBER_MODE
+            ]
+          }
+        ]
+      },
+      {
+        className: 'selector-tag', begin: IDENT_RE,
+        relevance: 0
+      },
+      {
+        begin: '{', end: '}',
+        illegal: /\S/,
+        contains: [
+          hljs.C_BLOCK_COMMENT_MODE,
+          RULE,
+        ]
+      }
+    ]
+  };
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = function(hljs) {
+  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
+  var TAG_INTERNALS = {
+    endsWithParent: true,
+    illegal: /</,
+    relevance: 0,
+    contains: [
+      {
+        className: 'attr',
+        begin: XML_IDENT_RE,
+        relevance: 0
+      },
+      {
+        begin: /=\s*/,
+        relevance: 0,
+        contains: [
+          {
+            className: 'string',
+            endsParent: true,
+            variants: [
+              {begin: /"/, end: /"/},
+              {begin: /'/, end: /'/},
+              {begin: /[^\s"'=<>`]+/}
+            ]
+          }
+        ]
+      }
+    ]
+  };
+  return {
+    aliases: ['html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist'],
+    case_insensitive: true,
+    contains: [
+      {
+        className: 'meta',
+        begin: '<!DOCTYPE', end: '>',
+        relevance: 10,
+        contains: [{begin: '\\[', end: '\\]'}]
+      },
+      hljs.COMMENT(
+        '<!--',
+        '-->',
+        {
+          relevance: 10
+        }
+      ),
+      {
+        begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
+        relevance: 10
+      },
+      {
+        begin: /<\?(php)?/, end: /\?>/,
+        subLanguage: 'php',
+        contains: [{begin: '/\\*', end: '\\*/', skip: true}]
+      },
+      {
+        className: 'tag',
+        /*
+        The lookahead pattern (?=...) ensures that 'begin' only matches
+        '<style' as a single word, followed by a whitespace or an
+        ending braket. The '$' is needed for the lexeme to be recognized
+        by hljs.subMode() that tests lexemes outside the stream.
+        */
+        begin: '<style(?=\\s|>|$)', end: '>',
+        keywords: {name: 'style'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '</style>', returnEnd: true,
+          subLanguage: ['css', 'xml']
+        }
+      },
+      {
+        className: 'tag',
+        // See the comment in the <style tag about the lookahead pattern
+        begin: '<script(?=\\s|>|$)', end: '>',
+        keywords: {name: 'script'},
+        contains: [TAG_INTERNALS],
+        starts: {
+          end: '\<\/script\>', returnEnd: true,
+          subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
+        }
+      },
+      {
+        className: 'meta',
+        variants: [
+          {begin: /<\?xml/, end: /\?>/, relevance: 10},
+          {begin: /<\?\w+/, end: /\?>/}
+        ]
+      },
+      {
+        className: 'tag',
+        begin: '</?', end: '/?>',
+        contains: [
+          {
+            className: 'name', begin: /[^\/><\s]+/, relevance: 0
+          },
+          TAG_INTERNALS
+        ]
+      }
+    ]
+  };
+};
 
 /***/ })
 /******/ ]);

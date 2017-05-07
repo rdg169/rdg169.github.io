@@ -15,7 +15,7 @@ const hero = {
   },
   en: {
     title: 'Something about me and this blog',
-    subtitle: 'I started this blog with the aim of having a place where I could <strong>share some guides or tips about framework, languages and technologies</strong> based on my work and free time experience as a web developer.'
+    subtitle: 'I started this blog with the aim of having a place where I could <strong>share some guides or tips about framework, languages and technologies</strong> based on my work and free time experience as a web developer. <br> When I\'m learning a new framework or trying to build a new web app I always look for guides and tutorials for tips and examples, with this blog I hope to provide this kind of contents as well, creating one more valid resource available for all the people out there.'
   }
 };
 
@@ -25,7 +25,8 @@ const aboutMe = {
     contents: [
       'Giovanni Rodighiero.',
       'Italian web developer, javascript fan.',
-      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>.'
+      'Interested in both frontend and backend',
+      'Bachelor\'s Degree in Computer Science, currently working in <a href="http://www.develon.com/" target="_blank">Develon Digital</a>.'
     ]
   },
   en: {
@@ -33,7 +34,8 @@ const aboutMe = {
     contents: [
       'Giovanni Rodighiero.',
       'Italian web developer, javascript fan.',
-      'Bachelor\'s Degree in Computer Science, currently working in <a href="#">Develon Digital</a>.'
+      'Interested in both frontend and backend',
+      'Bachelor\'s Degree in Computer Science, currently working in <a href="http://www.develon.com/" target="_blank">Develon Digital</a>.'
     ]
   }
 };

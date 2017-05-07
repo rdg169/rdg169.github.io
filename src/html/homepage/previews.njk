@@ -4,16 +4,15 @@
     {% for post in recentlyWrote.posts %}
       <article class="preview">
         <header class="preview__header">
-          <h2 class="preview__title">{{post.title}}</h2>
+          <h2 class="preview__title">{{post.title | safe}}</h2>
           <p class="preview__short-descr">{{post.shortDescr}}</p>
         </header>
         <div class="preview__tags">
+          <p class="preview__tag-intro"> Tags: 
           {% for figure in post.tags %}
-            <figure class="preview__tag">
-              <img src="{{figure.url}}" alt="{{figure.caption}}" title="{{figure.caption}}">
-              <figcaption>{{figure.caption}}</figcaption>
-            </figure>
+            <span class="preview__tag">{{figure.caption}}</span>
           {% endfor %}
+          </p>
         </div>
         <a class="preview__cta button" href="{{post.slug}}.html">Read more</a>
         <footer class="preview__footer">

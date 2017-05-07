@@ -20,11 +20,14 @@ const postEn = {
   shortDescr: 'A guide about the most important features of Javascript ECMAScript 6. This article is about const & let variables: how they works and when to use them.',
   tags: [
     {
-      url: '/images/tags/javascript.jpg',
       caption: 'JavaScript'
+    },
+    {
+      caption: 'ES6'
     }
   ],
   contents: [
+    `<h3>Introduction</h3>`,
     `<p>One of the main feature of ECMAScript 6 is the introduction of two new types of variables: <strong>const</strong> and <strong>let.</strong></p>
     <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means they live and are available <b>only</b> inside the block in which they are defined and in his children.&nbsp;</p>`,
 
@@ -57,7 +60,7 @@ const postEn = {
     <p class="post__caption">recognise a javascript's block</p>`,
 
     `<p>Why is being block-scoped important for a variable? Well because it allows us to not worry anymore about  declaring some vars that already exist, which usually leads to bugs and unexpected behaviours.</p>`,
-
+    `<h3>Variables' scope</h3>`,
     `<p>In javascript, indeed, all variables are in a <b>functional scope</b>, that means they exist only inside the function in which they are declared and, if they are not declared inside a function, they are <b>global variables</b>:</p>`,
 
     `<pre><code class="javascript post__code">
@@ -102,8 +105,8 @@ const postEn = {
       // console.log(b); throws an error too, same reason as the previous one.
     </pre></code>
     <p class="post__caption">block scoped variables</p>`,
-
-    `<p>Regarding const, the main difference with let is that it identifies a constant variable, as you probably inferred, but with a peculiarity with array and objects values:</p>`,
+    `<h3>Const difference with let</h3>`,
+    `<p>Regarding const, the main difference with let is that it identifies a constant variable, as you probably inferred, but with a peculiarity in case of array and objects values:</p>`,
 
     `<pre><code class="javascript post__code">
       const a = 1;

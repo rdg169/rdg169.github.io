@@ -4,8 +4,12 @@ const posts = {
 }
 const constAndLet = require('./constAndLet');
 posts.en.push(constAndLet.en);
+
 const webpackIntroOne = require('./webpackIntroOne');
 posts.en.push(webpackIntroOne.en);
+
+const webpackIntroTwo = require('./webpackIntroTwo');
+posts.en.push(webpackIntroTwo.en);
 
 const findById = id => {
   let foundPost = {};

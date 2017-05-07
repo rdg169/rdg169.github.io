@@ -1,0 +1,101 @@
+const header = require('../mixins/header');
+const footer = require('../mixins/footer');
+
+const postEn = {
+  meta: {
+    title: 'Frontend pipeline introduction with webpack 2: setting up Sass, ExtractTextPlugin and postCSS (2 of 3) | Web Developer\'s Thoughts',
+    keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
+    description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS'
+  },
+  header: header.en,
+  footer: footer.en,
+  id: 1,
+  date: {
+    value: '2017-05-7T15:12:16+02:00',
+    label: '7 May 2017'
+  },
+  signatureUrl: '/en/about.html',
+  slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two',
+  title: 'Frontend pipeline introduction with webpack 2:<br> setting up Sass, ExtractTextPlugin and postCSS (2 of 3)',
+  shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS',
+  tags: [
+    {
+      caption: 'webpack 2'
+    }
+  ],
+  contents: [
+    `<h3>Indroduction</h3>`,
+
+    `<p>In the first part of this serie (check it out <a href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html">here</a> if you missed it) we learned how to bundle our javascript files into a single output and how to transpile its contents from ES6 syntax to the classic one, to avoid browser support issues.</p>`,
+
+    `<p>In this second part we are going to take care of our stylesheets:
+    <ul>
+      <li>compiling SASS syntax to normal css;</li>
+      <li>process our files with postCSS to automatically add prefixes on the css rules that need it;</li>
+      <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
+    </ul></p>`,
+
+    `<p>But first things first: we need to include our stylesheets file in the main bundle, so let's create a <code>stylesheets/</code> folder into <code>"./src"</code>, add a <code>index.css</code> file and write some css rules in it, like this:</p>`,
+    `<pre><code class="css post__code">
+      // ./src/stylesheet/index.css
+      .foo {
+        color: red;
+        font-size: 30px;
+        font-style: italic;
+      }
+
+      .bar {
+        color: blue;
+        font-size: 10px;
+        font-weight: bold;
+      }
+    </pre></code>
+    <p class="post__caption">./src/stylesheet/index.css</p>`,
+    `<p>Now we can import <code>index.css</code> in our entry point file, like we did for the javascript in the previous part, to have something like this:</p>`,
+    `<pre><code class="javascript post__code">
+      // ./src/index.js
+      import scripts from './javascript/';
+
+      import styles from './stylesheets/index.css';
+    </pre></code>
+    <p class="post__caption">./src/index.js</p>`,
+    `<p>Then we can run webpack and ... receive an error ! That's because webpack can not understand css (it is not javascript of course), we need a loader to be able to process it, specifically we need <a href="https://github.com/webpack-contrib/css-loader" target="_blank">css-loader</a>, you can install it with <code>npm install --save-dev css-loader</code> as stated in the docs.</p>`,
+
+    `<p>This time we got no errors and if we check our <code>bundle.js</code> we can see a bunch of weird code has been added: that's our css contained in <code>index.css</code>. As you probably thinking right now, that's not very useful: we need to take that css out from the bundle and put it in a place the browser can actually make use of it, the easiest way to achive this in webpack is by using another loader, called <a href="https://github.com/webpack-contrib/style-loader" target="_blank">style-loader</a>.</p>`,
+
+    `<p>style-loader takes all our css and injects it in a <code>&lt;style&gt;</code> tag in the DOM. Let's move on and install it with <code>npm install style-loader --save-dev</code> then we edit <code>webpack.config.js</code> to instruct webpack to actually use it:</p>`,
+
+    `<pre><code class="javascript post__code">
+      // ./webpack.config.js
+      ...
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'] // just change this line, the rest is still the same
+      }
+    </pre></code>
+    <p class="post__caption">./webpack.config.js</p>`,
+
+    `<p>To appreciate the result this time we really need something we left behind: the HTML ! So we add a <code>index.html</code> in our <code>./dist/</code> folder, and write a basic html page layout, like this:</p>`,
+
+    `<pre><code class="xml post__code">
+      // ./dist/index.html
+      &lt;!doctype html&gt;
+      &lt;html lang="en"&gt;
+        &lt;head&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+          &lt;h1 class="foo"&gt;that's foo&lt;/h1&gt;
+          &lt;h2 class="bar"&gt;that's bar&lt;/h2&gt;
+          &lt;script src="./bundle.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre></code>
+    <p class="post__caption">./dist/index.html</p>`,
+    `<h3>Compiling SASS</h3>`,
+    `<p>Writing css through a framework that allows a kind of high-level syntax is becoming a must in frontend development, one of the most used and popular extension to achieve this is <a href="http://sass-lang.com/" target="_blank">SASS</a>, so our first goal will be make webpack compile SASS into css for us.</p>`
+  ]
+};
+
+module.exports = {
+  en: postEn
+}
