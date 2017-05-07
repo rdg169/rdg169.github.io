@@ -34,7 +34,7 @@ const postEn = {
       <li>process our files with postCSS to automatically add prefixes on the css rules that need it;</li>
       <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
     </ul></p>`,
-
+    `<h3>Bundling css</h3>`,
     `<p>But first things first: we need to include our stylesheets file in the main bundle, so let's create a <code>stylesheets/</code> folder into <code>"./src"</code>, add a <code>index.css</code> file and write some css rules in it, like this:</p>`,
     `<pre><code class="css post__code">
       // ./src/stylesheet/index.css
@@ -91,6 +91,48 @@ const postEn = {
       &lt;/html&gt;
     </pre></code>
     <p class="post__caption">./dist/index.html</p>`,
+    `<p>Now if you open that file in the browser you'll see the css injected in the DOM and the results applied to the html.</p>`,
+    `<h3>Extracting the style</h3>`,
+    `<p>By now there is still a thing that you probably don't like, the style injected in the DOM instead of a dedicated file, but we can easily fix that with a plugin: <a href="https://github.com/webpack-contrib/extract-text-webpack-plugin">extract-text-webpack-plugin</a>. Install it with <code>npm install --save-dev extract-text-webpack-plugin</code> and change <code>webpack.config.js</code> like this:</p>`,
+    `<pre><code class="javascript post__code">
+    const path = require('path');
+    const ExtractTextPlugin = require("extract-text-webpack-plugin"); // require the plugin
+
+    module.exports = {
+      // webpack.config.js
+      entry: './src/index.js',
+      output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, './dist')
+      },
+      module: {
+        rules: [
+          {
+            test: /.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['env']
+              }
+            }
+          },
+          { // parse every .css with the ExtractTextPlugin, using css-loader to read it
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+              fallback: "style-loader",
+              use: "css-loader"
+            })
+          }
+        ],
+      },
+      plugins: [
+        new ExtractTextPlugin("styles.css"), // set up the plugin with the name to use in the output file (refer to the options section in the docs)
+      ]
+    }
+    </pre></code>
+    <p class="post__caption">./webpack.config.js</p>`,
+    `<p>Running webpack with this config will produce another file in the <code>./src/dist/</code> folder, specifically it will produce our <code>styles.css</code> containing all style-related code imported in the assets' entry point. <br> Of course, to see the results in the html you need to explicitely link it like you would normally do with any other stylesheet file.</p>`,
     `<h3>Compiling SASS</h3>`,
     `<p>Writing css through a framework that allows a kind of high-level syntax is becoming a must in frontend development, one of the most used and popular extension to achieve this is <a href="http://sass-lang.com/" target="_blank">SASS</a>, so our first goal will be make webpack compile SASS into css for us.</p>`
   ]

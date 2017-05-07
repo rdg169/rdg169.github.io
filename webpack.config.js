@@ -2,6 +2,7 @@ const path = require('path');
 const NunjucksWebpackPlugin = require('nunjucks-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 const extractSass = new ExtractTextPlugin({
     filename: "[name].css",
     disable: false
