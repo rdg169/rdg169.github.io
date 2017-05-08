@@ -151,10 +151,10 @@ const postEn = {
     // webpack.config.js
     ...
     {
-      test: /\.scss$/, //this line changes, you can choose .scss or .sass or both
+      test: /\.scss$/, // now we look for .scss (or .sass or both of them, just change the regEx)
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: ['css-loader', 'sass-loader'] // this line changes
+        use: ['css-loader', 'sass-loader'] // here we add sass-loader to be used with css-loader
       })
     }
     ...
@@ -183,7 +183,28 @@ const postEn = {
     `<p>Remember to update the filename also in the import statement in the assets' entry point <code>./src/index.js</code>. After this you will be able to write your style using sass syntax with webpack automatically compiling it to css.</p>`,
     `<h3>Add postCss with autoprefixer</h3>`,
     `<p>As last goal we are going to add a very useful loader that takes away the pain of adding all the prefixes needed by some css rules in order to support all browsers, we are talking about <a href="https://github.com/postcss/postcss-loader" target="_blank">postcss-loader</a> with <code>autoprefixer</code>.</p>`,
-    `<p>As usual it can be installed with <code>npm install postcss-loader --save-dev</code> and the <code>webpack.config.js</code> needs to be updated like this:</p>`
+    `<p>As usual it can be installed with <code>npm install postcss-loader --save-dev</code> and the <code>webpack.config.js</code> needs to be updated like this:</p>`,
+    `<pre><code class="javascript post__code">
+    // webpack.config.js
+    ...
+    {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: [
+          'css-loader',
+          { // here we need extended syntax to configure postcss, so we use as object instead of a simple string with the name of the loader
+            loader: 'postcss-loader', // the loader to be used
+            options: { // options of the loader
+              plugins: [require('autoprefixer')()] // plugin to be used by the loader, in our case just autoprefixer (no need to explicitly install it)
+            }
+          },
+          'sass-loader'
+        ]
+      })
+    }
+    </pre></code>
+    <p class="post__caption">./webpack.config.js</p>`,
   ]
 };
 

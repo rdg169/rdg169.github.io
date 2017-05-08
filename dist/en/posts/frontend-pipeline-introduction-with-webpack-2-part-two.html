@@ -178,9 +178,10 @@
               }
             }
           },
-          { // parse every .css with the ExtractTextPlugin, using css-loader to read it
-            test: /.css$/,
-            use: ExtractTextPlugin.extract({
+          { 
+            test: /.css$/, // get every .css file, as we did before
+            use: ExtractTextPlugin.extract({ // this time apply ExtractTextPlugin to them, which uses css-loader as an
+                                             // internal loader and style-loader (the one we used before) as fallback
               fallback: "style-loader",
               use: "css-loader"
             })
@@ -208,10 +209,10 @@
     // webpack.config.js
     ...
     {
-      test: /.scss$/, //this line changes, you can choose .scss or .sass or both
+      test: /.scss$/, // now we look for .scss (or .sass or both of them, just change the regEx)
       use: ExtractTextPlugin.extract({
         fallback: "style-loader",
-        use: ['css-loader', 'sass-loader'] // this line changes
+        use: ['css-loader', 'sass-loader'] // here we add sass-loader to be used with css-loader
       })
     }
     ...
