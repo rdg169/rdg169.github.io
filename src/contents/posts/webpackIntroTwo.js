@@ -60,7 +60,16 @@ const postEn = {
     </pre></code>
     <p class="post__caption">./src/index.js</p>`,
     `<p>Then we can run webpack and ... receive an error ! That's because webpack can not understand css (it is not javascript of course), we need a loader to be able to process it, specifically we need <a href="https://github.com/webpack-contrib/css-loader" target="_blank">css-loader</a>, you can install it with <code>npm install --save-dev css-loader</code> as stated in the docs.</p>`,
-
+    `<p>Now we need to add a rule inside <code>webpack.config.js</code> to catch all .css files and apply this new loader to be able to bundle them with the javascript:</p>`,
+    `<pre><code class="javascript post__code">
+      // ./webpack.config.js
+      ...
+      {
+        test: /\.css$/, // get all .css files
+        use: ['css-loader'] // apply css-loader to them
+      }
+    </pre></code>
+    <p class="post__caption">./webpack.config.js</p>`,
     `<p>This time we got no errors and if we check our <code>bundle.js</code> we can see a bunch of weird code has been added: that's our css contained in <code>index.css</code>. As you probably thinking right now, that's not very useful: we need to take that css out from the bundle and put it in a place the browser can actually make use of it, the easiest way to achive this in webpack is by using another loader, called <a href="https://github.com/webpack-contrib/style-loader" target="_blank">style-loader</a>.</p>`,
 
     `<p>style-loader takes all our css and injects it in a <code>&lt;style&gt;</code> tag in the DOM. Let's move on and install it with <code>npm install style-loader --save-dev</code> then we edit <code>webpack.config.js</code> to instruct webpack to actually use it:</p>`,
@@ -70,7 +79,7 @@ const postEn = {
       ...
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'] // just change this line, the rest is still the same
+        use: ['style-loader', 'css-loader'] // also apply style-loader to every .css file
       }
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>`,
@@ -117,9 +126,10 @@ const postEn = {
               }
             }
           },
-          { // parse every .css with the ExtractTextPlugin, using css-loader to read it
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
+          { 
+            test: /\.css$/, // get every .css file, as we did before
+            use: ExtractTextPlugin.extract({ // this time apply ExtractTextPlugin to them, which uses css-loader as an
+                                             // internal loader and style-loader (the one we used before) as fallback
               fallback: "style-loader",
               use: "css-loader"
             })
@@ -150,7 +160,7 @@ const postEn = {
     ...
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>`,
-    `<p>After this we can rename <code>index.css</code> to <code>index.scss</code></p> and refactor it with some sass syntax, like this:</p>`,
+    `<p>After this we can rename <code>index.css</code> to <code>index.scss</code> and refactor it with some sass syntax, like this:</p>`,
     `<pre><code class="css post__code">
       // ./src/stylesheet/index.scss
 
@@ -170,9 +180,10 @@ const postEn = {
       }
     </pre></code>
     <p class="post__caption">./src/stylesheet/index.scss</p>`,
-    `<p>Remember to update the filename also in the import statement in the asset's entry point <code>./src/index.js</code>. After this you are able to write your style using sass syntax with webpack automatically compiling it to css.</p>`,
-    `<h3>Add postCss</h3>`,
-    `<p>As last goal we are going to a very useful loader that take</p>`
+    `<p>Remember to update the filename also in the import statement in the assets' entry point <code>./src/index.js</code>. After this you will be able to write your style using sass syntax with webpack automatically compiling it to css.</p>`,
+    `<h3>Add postCss with autoprefixer</h3>`,
+    `<p>As last goal we are going to add a very useful loader that takes away the pain of adding all the prefixes needed by some css rules in order to support all browsers, we are talking about <a href="https://github.com/postcss/postcss-loader" target="_blank">postcss-loader</a> with <code>autoprefixer</code>.</p>`,
+    `<p>As usual it can be installed with <code>npm install postcss-loader --save-dev</code> and the <code>webpack.config.js</code> needs to be updated like this:</p>`
   ]
 };
 
