@@ -95,11 +95,11 @@ const postEn = {
     `<h3>Extracting the style</h3>`,
     `<p>By now there is still a thing that you probably don't like, the style injected in the DOM instead of a dedicated file, but we can easily fix that with a plugin: <a href="https://github.com/webpack-contrib/extract-text-webpack-plugin">extract-text-webpack-plugin</a>. Install it with <code>npm install --save-dev extract-text-webpack-plugin</code> and change <code>webpack.config.js</code> like this:</p>`,
     `<pre><code class="javascript post__code">
+    // webpack.config.js
     const path = require('path');
     const ExtractTextPlugin = require("extract-text-webpack-plugin"); // require the plugin
 
     module.exports = {
-      // webpack.config.js
       entry: './src/index.js',
       output: {
         filename: 'bundle.js',
@@ -134,7 +134,45 @@ const postEn = {
     <p class="post__caption">./webpack.config.js</p>`,
     `<p>Running webpack with this config will produce another file in the <code>./src/dist/</code> folder, specifically it will produce our <code>styles.css</code> containing all style-related code imported in the assets' entry point. <br> Of course, to see the results in the html you need to explicitely link it like you would normally do with any other stylesheet file.</p>`,
     `<h3>Compiling SASS</h3>`,
-    `<p>Writing css through a framework that allows a kind of high-level syntax is becoming a must in frontend development, one of the most used and popular extension to achieve this is <a href="http://sass-lang.com/" target="_blank">SASS</a>, so our first goal will be make webpack compile SASS into css for us.</p>`
+    `<p>Writing css through a framework that allows a kind of high-level syntax is becoming a must in frontend development, one of the most used and popular extension to achieve this is <a href="http://sass-lang.com/" target="_blank">SASS</a>, so our next goal will be make webpack compile SASS into css for us.</p>`,
+    `<p>First we need to install <a href="https://github.com/webpack-contrib/sass-loader" target="_blank">sass-loader</a>, with <code>npm install sass-loader --save-dev</code>, this loader requires <a href="https://github.com/sass/node-sass" target="_blank">node-sass</a> to compile the assets, so we need to install it as well with <code>npm install node-sass --save-dev</code>.</p>`,
+    `<p>Then we need a simple update on <code>webpack.config.js</code>:</p>`,
+    `<pre><code class="javascript post__code">
+    // webpack.config.js
+    ...
+    {
+      test: /\.scss$/, //this line changes, you can choose .scss or .sass or both
+      use: ExtractTextPlugin.extract({
+        fallback: "style-loader",
+        use: ['css-loader', 'sass-loader'] // this line changes
+      })
+    }
+    ...
+    </pre></code>
+    <p class="post__caption">./webpack.config.js</p>`,
+    `<p>After this we can rename <code>index.css</code> to <code>index.scss</code></p> and refactor it with some sass syntax, like this:</p>`,
+    `<pre><code class="css post__code">
+      // ./src/stylesheet/index.scss
+
+      $red: #ad0c1e;
+      $blue: #0b579e;
+
+      .foo {
+        color: $red;
+        font-size: 30px;
+        font-style: italic;
+      }
+
+      .bar {
+        color: $blue;
+        font-size: 10px;
+        font-weight: bold;
+      }
+    </pre></code>
+    <p class="post__caption">./src/stylesheet/index.scss</p>`,
+    `<p>Remember to update the filename also in the import statement in the asset's entry point <code>./src/index.js</code>. After this you are able to write your style using sass syntax with webpack automatically compiling it to css.</p>`,
+    `<h3>Add postCss</h3>`,
+    `<p>As last goal we are going to a very useful loader that take</p>`
   ]
 };
 
