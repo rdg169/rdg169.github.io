@@ -284,6 +284,9 @@ main {
   background-position-x: center;
   background-position-y: bottom;
   background-image: url("/images/homepage-hero_v0.jpg"); }
+  @media (max-width: 767px) {
+    .footer {
+      height: 250px; } }
 
 .footer-sitemap__link {
   color: white; }
@@ -294,6 +297,12 @@ main {
   display: flex;
   margin: 0 10%;
   padding: 0; }
+  @media (max-width: 767px) {
+    .footer-sitemap {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; } }
 
 .footer-sitemap__item {
   -webkit-box-flex: 0;
@@ -305,6 +314,9 @@ main {
           justify-content: space-between;
   text-align: center;
   list-style: none; }
+  @media (max-width: 767px) {
+    .footer-sitemap__item {
+      width: 100%; } }
 
 .footer-sitemap__link {
   text-decoration: none;
@@ -487,7 +499,8 @@ main {
 .post-hero__title {
   font-size: 3rem;
   color: #DB5A42;
-  line-height: 50px; }
+  line-height: 50px;
+  word-break: break-word; }
   @media (max-width: 767px) {
     .post-hero__title {
       font-size: 2.5rem;

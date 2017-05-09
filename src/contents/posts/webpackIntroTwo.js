@@ -3,7 +3,7 @@ const footer = require('../mixins/footer');
 
 const postEn = {
   meta: {
-    title: 'Frontend pipeline introduction with webpack 2: setting up Sass, ExtractTextPlugin and postCSS (2 of 3) | Web Developer\'s Thoughts',
+    title: 'Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 3) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS'
   },
@@ -16,7 +16,7 @@ const postEn = {
   },
   signatureUrl: '/en/about.html',
   slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two',
-  title: 'Frontend pipeline introduction with webpack 2:<br> setting up Sass, ExtractTextPlugin and postCSS (2 of 3)',
+  title: 'Frontend pipeline introduction with webpack 2:<br> Sass, ExtractTextPlugin and postCSS (2 of 3)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS',
   tags: [
     {
@@ -30,9 +30,9 @@ const postEn = {
 
     `<p>In this second part we are going to take care of our stylesheets:
     <ul>
+      <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
       <li>compiling SASS syntax to normal css;</li>
       <li>process our files with postCSS to automatically add prefixes on the css rules that need it;</li>
-      <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
     </ul></p>`,
     `<h3>Bundling css</h3>`,
     `<p>But first things first: we need to include our stylesheets file in the main bundle, so let's create a <code>stylesheets/</code> folder into <code>"./src"</code>, add a <code>index.css</code> file and write some css rules in it, like this:</p>`,
@@ -126,7 +126,7 @@ const postEn = {
               }
             }
           },
-          { 
+          {
             test: /\.css$/, // get every .css file, as we did before
             use: ExtractTextPlugin.extract({ // this time apply ExtractTextPlugin to them, which uses css-loader as an
                                              // internal loader and style-loader (the one we used before) as fallback
@@ -205,6 +205,33 @@ const postEn = {
     }
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>`,
+    `<p>To try it out we can add some css rules that need prefixes on them, <code>display: flex;</code> is a good example, let's update our <code>index.scss</code> with another class:</p>`,
+    `<pre><code class="css post__code">
+      // ./src/stylesheet/index.scss
+
+      $red: #ad0c1e;
+      $blue: #0b579e;
+
+      .foo {
+        color: $red;
+        font-size: 30px;
+        font-style: italic;
+      }
+
+      .bar {
+        color: $blue;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+      .flex-it-out {
+        display: flex;
+      }
+    </pre></code>
+    <p class="post__caption">./src/stylesheet/index.scss</p>`,
+    `<p>Running webpack now will produce the same file as it did previously, but this time you'll see that the class <code>.flex-it-out</code> comes with all the needed prefixes.</p>`,
+    `<h3>Conclusions</h3>`,
+    `<p>In this second part we covered how to handle the style's assets to speed up the development and by now you have a basic frontend pipeline that can be applied in any project. <br>There are more loaders out there that you can plug in into this build, like <a href="https://github.com/Va1/browser-sync-webpack-plugin" target="_blank">browser-sync</a> or <a href="https://github.com/statianzo/webpack-livereload-plugin" target="_blank">livereload</a>, just follow the docs and you'll see that the method is the same or very similar to the loaders we used here.</p>`
   ]
 };
 

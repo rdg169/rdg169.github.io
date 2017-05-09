@@ -23,7 +23,7 @@ const headerEn = {
       url: '/en/posts.html'
     },
     {
-      label: 'About me',
+      label: 'About',
       url: '/en/about.html'
     }
   ]
