@@ -1,13 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,700);html, body {
+@import url(https://fonts.googleapis.com/css?family=Karla:400,400i,700|Poppins:600);html, body {
   margin: 0;
   padding: 0;
   font-size: 16px;
   line-height: 60px;
-  font-family: 'Nunito', sans-serif; }
+  font-family: 'Karla', sans-serif; }
 
 body {
   position: relative;
   height: 1px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', serif; }
 
 .button {
   background-color: #009EDD;
@@ -105,9 +108,9 @@ main {
   display: block;
   color: white;
   text-decoration: none;
-  font-style: italic;
-  font-size: 1.2rem;
-  padding: 0 15px; }
+  font-size: 0.9rem;
+  font-family: 'Poppins';
+  padding: 0 20px; }
 
 .site-nav__link--active {
   width: 8px;
@@ -499,12 +502,12 @@ main {
 .post-hero__title {
   font-size: 3rem;
   color: #DB5A42;
-  line-height: 50px;
+  line-height: 60px;
   word-break: break-word; }
   @media (max-width: 767px) {
     .post-hero__title {
       font-size: 2.5rem;
-      line-height: 40px; } }
+      line-height: 50px; } }
 
 .post-hero__subtitle {
   font-size: 2rem;
@@ -525,15 +528,18 @@ main {
   max-width: 1024px;
   text-align: center;
   margin: 50px auto; }
+  @media (max-width: 1023px) {
+    .post {
+      margin-left: 5%;
+      margin-right: 5%; } }
   .post p {
     line-height: 30px;
     margin: 40px 0;
     font-size: 1.2rem;
     text-align: left; }
-  @media (max-width: 1023px) {
-    .post {
-      margin-left: 5%;
-      margin-right: 5%; } }
+    .post p code {
+      background-color: #eee;
+      padding: 1px 5px; }
   .post li {
     line-height: 30px;
     text-align: left; }
@@ -542,7 +548,8 @@ main {
 
 .post__code {
   text-align: left;
-  line-height: 25px; }
+  line-height: 25px;
+  background-color: inherit; }
 
 .post__caption {
   color: #999999;

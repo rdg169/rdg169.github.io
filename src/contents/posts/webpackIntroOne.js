@@ -3,7 +3,7 @@ const footer = require('../mixins/footer');
 
 const postEn = {
   meta: {
-    title: 'Frontend pipeline introduction with webpack 2: setting up babel (1 of 3) | Web Developer\'s Thoughts',
+    title: 'Frontend pipeline introduction with webpack 2: setting up babel (1 of 2) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up babel transpiler.'
   },
@@ -16,7 +16,7 @@ const postEn = {
   },
   signatureUrl: '/en/about.html',
   slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-one',
-  title: 'Frontend pipeline introduction with webpack 2:<br> setting up babel (1 of 3)',
+  title: 'Frontend pipeline introduction with webpack 2:<br> setting up babel (1 of 2)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2.',
   tags: [
     {

@@ -3,7 +3,7 @@ const footer = require('../mixins/footer');
 
 const postEn = {
   meta: {
-    title: 'Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 3) | Web Developer\'s Thoughts',
+    title: 'Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS'
   },
@@ -16,7 +16,7 @@ const postEn = {
   },
   signatureUrl: '/en/about.html',
   slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two',
-  title: 'Frontend pipeline introduction with webpack 2:<br> Sass, ExtractTextPlugin and postCSS (2 of 3)',
+  title: 'Frontend pipeline introduction with webpack 2:<br> Sass, ExtractTextPlugin and postCSS (2 of 2)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS',
   tags: [
     {
