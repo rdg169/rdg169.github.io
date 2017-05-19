@@ -27,7 +27,59 @@ const postEn = {
     `<h3>Introduction</h3>`,
     `<p>If you are writing javascript you already know keeping your code asynchronous is a must and sometimes achieving this can be very painful, specially if you need to impose a specific order among your async functions.</p>`,
     `<p>There are some modules out there that handle this for you, <a href="https://github.com/caolan/async" target="_blank">async</a> for instance, if you like the "callback" approach, but there is another way to achieve async programming without making a mess: Promises !</p>`,
-    `<p></p>`
+    `<p>A promise is an async function that lets you specify what to do if everything goes as planned and what to do otherwise. <br> Here's a simple promise:</p>`,
+    `<pre><code class="javascript post__code">
+      const myPromise = new Promise(function (resolve, reject) {
+        // ... doing my stuff
+        if (true)
+          return resolve('ok');
+        return reject('error');
+      });
+    </pre></code>
+    <p class="post__caption">Base promise.</p>`,
+    `<p>As you can see <code>Promise()</code> takes a function as its only argument, this function in turn has two arguments:
+      <ul>
+        <li><code>resolve</code>: a function to call if the promise should succeed;</li>
+        <li><code>reject</code>: a function to call if the promise should fail.</li>
+      </ul>
+    </p>`,
+    `<p>In the previous example the promise will succeed, of course, and will return the string 'ok'. Now here's how to use that promise:</p>`,
+    `<pre><code class="javascript post__code">
+      const myPromise = new Promise(function (resolve, reject) {
+        // ... doing my stuff
+        if (true)
+          return resolve('ok');
+        return reject('error');
+      });
+
+      myPromise.then(function(result) {
+        console.log('promise done', result);
+      });
+      console.log('reference');
+
+    </pre></code>
+    <p class="post__caption">Using the base promise.</p>`,
+    `<p>A promise instance exposes a <code>then(succeedCallback, failureCallback)</code> function called when the promise finishes, takes two callbacks: one used in case of a succeed promise, the other in case of a failed one. <br> If we run the code above it will probably log 'reference' first and then 'promise done ok', this because the promise is asynchronous so the code above does not wait for it to be executed.</p>`,
+    `<p>Now let's change the example a bit to make it more flexible:</p>`,
+    `<pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+      myPromise(true).then(function(result) {
+        console.log('first promise done', result);
+      });
+      myPromise(false).then(null, function(error) {
+        console.log('second promise done', error);
+      });
+      console.log('reference');
+    </pre></code>
+    <p class="post__caption">Improving the example.</p>`,
+    `<p>This time the order of the results is not predictable, probably 'reference' will be the first thing printed, but it is wrong to make this kind of assumptions.</p>`,
+    `<p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, provided by a promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does for a success.</p>`
   ]
 };
 
