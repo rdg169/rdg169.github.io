@@ -79,7 +79,30 @@ const postEn = {
     </pre></code>
     <p class="post__caption">Improving the example.</p>`,
     `<p>This time the order of the results is not predictable, probably 'reference' will be the first thing printed, but it is wrong to make this kind of assumptions.</p>`,
-    `<p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, provided by a promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does for a success.</p>`
+    `<p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, provided by a promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does for a success. You can use it like this:</p>`
+    `<pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+
+      myPromise(true).then(function(result) {
+        console.log('first promise done', result);
+      });
+
+      myPromise(false)
+        .then(function(result) {
+          console.log('second promise done', result);
+        })
+        .catch(function(error) {
+          console.log('second promise done', error);
+        });
+      console.log('reference');
+    </pre></code>
+    <p class="post__caption">Using catch function.</p>`,
   ]
 };
 
