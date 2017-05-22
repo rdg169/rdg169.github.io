@@ -1,6 +1,8 @@
 <section class="about-hero">
   <hgroup class="about-hero__hgroup">
     <h1 class="about-hero__title">{{hero.title}}</h1>
-    <h2 class="about-hero__subtitle">{{hero.subtitle | safe}}</h2>
+    {% for subtitle in hero.subtitles %}
+      <h2 class="about-hero__subtitle">{{subtitle | safe}}</h2>
+    {% endfor %}
   </hgroup>
 </section>

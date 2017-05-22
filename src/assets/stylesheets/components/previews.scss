@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   max-width: 1337px;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .previews__title {
@@ -52,7 +52,8 @@
 .preview__title {
   margin: 20px 5px 10px 5px;
   font-size: 1.8rem;
-  line-height: 30px;
+  line-height: 35px;
+  min-height: 125px;
   // color: $lightBlue;
 }
 

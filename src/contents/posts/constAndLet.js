@@ -27,7 +27,7 @@ const postEn = {
     }
   ],
   contents: [
-    `<h3>Introduction</h3>`,
+    `<h3>Prologue</h3>`,
     `<p>One of the main feature of ECMAScript 6 is the introduction of two new types of variables: <strong>const</strong> and <strong>let.</strong></p>
     <p>The most important thing to know about them is that they are <strong>blocked-scoped variables,&nbsp;</strong>that&nbsp;means they live and are available <b>only</b> inside the block in which they are defined and in his children.&nbsp;</p>`,
 

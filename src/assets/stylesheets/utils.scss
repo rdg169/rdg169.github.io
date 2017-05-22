@@ -12,6 +12,21 @@
   }
 }
 
+.breadcrumbs {
+  margin-top: 80px;
+  padding-left: 10px;
+  line-height: 30px;
+}
+
+.breadcrumbs__item {
+  list-style: none;
+  display: inline;
+  span {
+    margin: 0 5px;
+    font-size: 1.2rem;
+  }
+}
+
 main {
   margin-top: 50px;
   min-height: 80vh;

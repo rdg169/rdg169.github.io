@@ -24,6 +24,18 @@ h1, h2, h3, h4, h5, h6 {
     background-color: white;
     color: #009EDD; }
 
+.breadcrumbs {
+  margin-top: 80px;
+  padding-left: 10px;
+  line-height: 30px; }
+
+.breadcrumbs__item {
+  list-style: none;
+  display: inline; }
+  .breadcrumbs__item span {
+    margin: 0 5px;
+    font-size: 1.2rem; }
+
 main {
   margin-top: 50px;
   min-height: 80vh; }
@@ -193,9 +205,9 @@ main {
       flex-wrap: wrap;
   max-width: 1337px;
   margin: 0 auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start; }
 
 .previews__title {
   text-align: left;
@@ -241,7 +253,8 @@ main {
 .preview__title {
   margin: 20px 5px 10px 5px;
   font-size: 1.8rem;
-  line-height: 30px; }
+  line-height: 35px;
+  min-height: 125px; }
 
 .preview__short-descr {
   margin-top: 30px;
@@ -390,7 +403,9 @@ main {
     border-bottom: 2px solid white; }
 
 .posts-hero {
-  margin-top: 100px; }
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px; }
 
 .posts-hero__title {
   text-align: center;
@@ -420,8 +435,10 @@ main {
 .about-hero__subtitle {
   text-align: left;
   font-weight: normal;
-  line-height: 35px;
-  font-size: 1.3rem; }
+  line-height: 40px;
+  font-size: 1.3rem;
+  margin-bottom: 60px;
+  margin-top: 60px; }
 
 .about-bio {
   margin: 70px 10px; }
@@ -506,7 +523,7 @@ main {
   word-break: break-word; }
   @media (max-width: 767px) {
     .post-hero__title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       line-height: 50px; } }
 
 .post-hero__subtitle {
@@ -518,7 +535,7 @@ main {
   @media (max-width: 1023px) {
     .post-hero__subtitle {
       width: 90%;
-      font-size: 1.8rem;
+      font-size: 1.5em;
       line-height: 40px; } }
   @media (max-width: 767px) {
     .post-hero__subtitle {
@@ -543,6 +560,9 @@ main {
   .post li {
     line-height: 30px;
     text-align: left; }
+    .post li code {
+      background-color: #eee;
+      padding: 1px 5px; }
   .post img {
     max-width: 100%; }
 

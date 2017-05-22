@@ -3,7 +3,7 @@ const footer = require('../mixins/footer');
 
 const postEn = {
   meta: {
-    title: 'Frontend pipeline introduction with webpack 2: setting up babel (1 of 2) | Web Developer\'s Thoughts',
+    title: 'Frontend pipeline with webpack 2: setting up babel (1 of 2) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up babel transpiler.'
   },
@@ -16,15 +16,15 @@ const postEn = {
   },
   signatureUrl: '/en/about.html',
   slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-one',
-  title: 'Frontend pipeline introduction with webpack 2:<br> setting up babel (1 of 2)',
-  shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2.',
+  title: 'Frontend pipeline with webpack 2:<br> setting up babel (1 of 2)',
+  shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up babel traspiler.',
   tags: [
     {
       caption: 'webpack 2'
     }
   ],
   contents: [
-    `<h3>Introduction</h3>`,
+    `<h3>Prologue</h3>`,
     `<p>In case you don't know it, a frontend pipeline is a set of instructions useful to automate some tasks you usually perform on your assets before going to production, or while developing to make the development itself easier and faster.
     Here's some examples, just to give the idea:</p>`,
     `<ul>
@@ -154,7 +154,7 @@ const postEn = {
     `<p>And basically we are done with it ! If you start writing some ES6 code in your .js files and then run webpack, as we did previously, you'll se that in your <b>bundle.js</b> file what you wrote has been traspiled to be fully understandable by all browsers.</p>`,
     `<h3>Conclusions</h3>`,
     `<p>By now you should be able to create basic pipeline with webpack and have a general idea of how a loader works.</p>`,
-    `<p>Checkout the next <a href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two.html">part of this serie</a> where we are going to handle our stylesheets, compiling .sass/.scss into regular .css and more!</p>`
+    `<p>Checkout the <a href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two.html">next part of this serie</a> where we are going to handle our stylesheets, compiling .sass/.scss into regular .css and more!</p>`
   ]
 };
 

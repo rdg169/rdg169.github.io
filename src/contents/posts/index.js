@@ -11,6 +11,9 @@ posts.en.push(webpackIntroOne.en);
 const webpackIntroTwo = require('./webpackIntroTwo');
 posts.en.push(webpackIntroTwo.en);
 
+const promises = require('./promises');
+posts.en.push(promises.en);
+
 const findById = id => {
   let foundPost = {};
   postsEn.forEach(post => id === post.id ? foundPost = post : null);

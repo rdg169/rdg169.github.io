@@ -10,7 +10,7 @@
   <meta content="#009EDD" name="theme-color">
   <meta name="HandheldFriendly" content="true"/> 
   <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  <title>Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 3) | Web Developer&#39;s Thoughts</title>
+  <title>Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer&#39;s Thoughts</title>
   <meta name="description" content="An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS">
   <meta name="keywords" content="webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6">
   <meta name="author" content="Giovanni Rodighiero">
@@ -57,21 +57,38 @@
   <main>
     
   <article>
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs">
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/" class="breadcrumbs__link">
+          <span itemprop="name">Home</span></a>
+        <span itemprop="position" content="1">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/en/posts.html" class="breadcrumbs__link">
+          <span itemprop="name">Posts</span></a>
+        <span itemprop="position" content="2">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two" class="breadcrumbs__link">
+          <span itemprop="name">Frontend pipeline with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2)</span>
+        </a>
+      </li>
+    </ol>
     <section class="post-hero">
-  <h1 class="post-hero__title">Frontend pipeline introduction with webpack 2:<br> Sass, ExtractTextPlugin and postCSS (2 of 3)</h1>
-  <h2 class="post-hero__subtitle">An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS</h2>
+  <h1 class="post-hero__title">Frontend pipeline with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2)</h1>
+  <h2 class="post-hero__subtitle">An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS.</h2>
 </section>
     <section class="post">
   
-    <h3>Indroduction</h3>
+    <h3>Prologue</h3>
   
     <p>In the first part of this serie (check it out <a href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html">here</a> if you missed it) we learned how to bundle our javascript files into a single output and how to transpile its contents from ES6 syntax to the classic one, to avoid browser support issues.</p>
   
     <p>In this second part we are going to take care of our stylesheets:
     <ul>
+      <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
       <li>compiling SASS syntax to normal css;</li>
       <li>process our files with postCSS to automatically add prefixes on the css rules that need it;</li>
-      <li>extract all css from our <code>bundle.js</code> into a separate file;</li>
     </ul></p>
   
     <h3>Bundling css</h3>
@@ -340,6 +357,5 @@
   
 
   <script src="/bundle.js"></script>
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

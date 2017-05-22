@@ -14,7 +14,7 @@
   line-height: 60px;
   word-break: break-word;
   @include untilTablet {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 50px;
   }
 }
@@ -27,7 +27,7 @@
   line-height: 50px;
   @include untilDesktop {
     width: 90%;
-    font-size: 1.8rem;
+    font-size: 1.5em;
     line-height: 40px;
   }
   @include untilTablet {
@@ -56,6 +56,10 @@
   li {
     line-height: 30px;
     text-align: left;
+    code {
+      background-color: #eee;
+      padding: 1px 5px;
+    }
   }
   img {
     max-width: 100%;
