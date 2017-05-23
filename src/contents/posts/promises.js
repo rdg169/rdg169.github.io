@@ -1,11 +1,19 @@
 const header = require('../mixins/header');
 const footer = require('../mixins/footer');
 
+const config = require('../mixins/config');
+
 const postEn = {
   meta: {
     title: 'Javascript promises guide: using async await | Web Developer\'s Thoughts',
     keywords: 'promises async await guide tutorial javascript ecmascript6 es6',
     description: 'A guide about javascript promises: what they are and how to use them effectively with async await.'
+  },
+  og: {
+    title: 'Javascript promises guide: using async await | Web Developer\'s Thoughts',
+    description: 'A guide about javascript promises: what they are and how to use them effectively with async await.',
+    url: `${config.baseDomain}/posts/const-and-let-variables.html`,
+    image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
   },
   header: header.en,
   footer: footer.en,
@@ -14,8 +22,8 @@ const postEn = {
     value: '2017-05-19T20:46:35+02:00',
     label: '19 May 2017'
   },
-  signatureUrl: '/en/about.html',
-  slug: '/en/posts/javascript-promises-guide',
+  signatureUrl: '/about.html',
+  slug: '/posts/javascript-promises-guide',
   title: 'Javascript promises guide: using async await',
   shortDescr: 'A guide about javascript promises, what they are and how to use them effectively with async await.',
   tags: [

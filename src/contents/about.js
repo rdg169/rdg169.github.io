@@ -1,6 +1,8 @@
 const header = require('./mixins/header');
 const footer = require('./mixins/footer');
 
+const config = require('./mixins/config');
+
 const meta = {
   en: {
     title: 'About | Web Developer\'s Thoughts',
@@ -8,6 +10,13 @@ const meta = {
     description: 'About, personal informations, contacts of author of guides, tutorials and tips on web development\'s languages, frameworks and related technologies'
   }
 }
+
+const og = {
+  title: meta.title,
+  description: meta.description,
+  url: `${config.baseDomain}/about.html`,
+  image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
+};
 
 const hero = {
   it: {

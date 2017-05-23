@@ -2,13 +2,22 @@ const header = require('./mixins/header');
 const footer = require('./mixins/footer');
 const posts = require('./posts');
 
+const config = require('./mixins/config');
+
 const meta = {
   en: {
     title: 'Web Developer\'s Thoughts',
     keywords: 'web developer guide tutorial javascript ecmascript6 es6',
     description: 'Guides, tutorials and tips on web development\'s languages, frameworks and related technologies'
   }
-}
+};
+
+const og = {
+  title: meta.title,
+  description: meta.description,
+  url: `${config.baseDomain}`,
+  image: `${config.baseDomain}/images/homepage-hero_v1.jpg`,
+};
 
 const hero = {
   it: {
@@ -40,14 +49,9 @@ const recentlyWrote = {
 };
 
 module.exports = {
-  it: {
-    header: Object.assign({}, header.it, { activePageIndex: -1 }),
-    hero: hero.it,
-    recentlyWrote: Object.assign({}, recentlyWrote.it, { signatureUrl: '/it/about' }),
-    footer: footer.it
-  },
   en: {
     meta: meta.en,
+    og,
     header: Object.assign({}, header.en, { activePageIndex: -1 }),
     hero: hero.en,
     recentlyWrote: Object.assign({}, recentlyWrote.en, { signatureUrl: '/about' }),

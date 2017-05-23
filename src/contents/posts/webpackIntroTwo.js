@@ -1,11 +1,19 @@
 const header = require('../mixins/header');
 const footer = require('../mixins/footer');
 
+const config = require('../mixins/config');
+
 const postEn = {
   meta: {
     title: 'Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer\'s Thoughts',
     keywords: 'webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6',
-    description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS'
+    description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS.'
+  },
+  og: {
+    title: 'Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer\'s Thoughts',
+    description: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS',
+    url: `${config.baseDomain}/posts/const-and-let-variables.html`,
+    image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
   },
   header: header.en,
   footer: footer.en,
@@ -14,8 +22,8 @@ const postEn = {
     value: '2017-05-7T15:12:16+02:00',
     label: '7 May 2017'
   },
-  signatureUrl: '/en/about.html',
-  slug: '/en/posts/frontend-pipeline-introduction-with-webpack-2-part-two',
+  signatureUrl: '/about.html',
+  slug: '/posts/frontend-pipeline-introduction-with-webpack-2-part-two',
   title: 'Frontend pipeline with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS.',
   tags: [
@@ -26,7 +34,7 @@ const postEn = {
   contents: [
     `<h3>Prologue</h3>`,
 
-    `<p>In the first part of this serie (check it out <a href="/en/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html">here</a> if you missed it) we learned how to bundle our javascript files into a single output and how to transpile its contents from ES6 syntax to the classic one, to avoid browser support issues.</p>`,
+    `<p>In the first part of this serie (check it out <a href="/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html">here</a> if you missed it) we learned how to bundle our javascript files into a single output and how to transpile its contents from ES6 syntax to the classic one, to avoid browser support issues.</p>`,
 
     `<p>In this second part we are going to take care of our stylesheets:
     <ul>

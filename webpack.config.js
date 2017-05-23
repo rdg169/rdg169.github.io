@@ -18,11 +18,6 @@ const renderHomepage = () => {
         to: './index.html',
         context: content
       };
-    return {
-      from: './src/html/homepage/index.njk',
-      to: `./${lang}/index.html`,
-      context: content
-    };
   });
 };
 
@@ -30,7 +25,7 @@ const renderAbout = () => {
   return Object.entries(pages.about).map(([lang, content]) => {
     return {
       from: './src/html/about/index.njk',
-      to: `./${lang}/about.html`,
+      to: `./about.html`,
       context: content
     };
   });
@@ -40,7 +35,7 @@ const renderPostsIndex = () => {
   return Object.entries(pages.postsIndex).map(([lang, content]) => {
     return {
       from: './src/html/postsIndex/index.njk',
-      to: `./${lang}/posts.html`,
+      to: `./posts.html`,
       context: content
     }
   });

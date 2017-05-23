@@ -1,11 +1,19 @@
 const header = require('../mixins/header');
 const footer = require('../mixins/footer');
 
+const config = require('../mixins/config');
+
 const postEn = {
   meta: {
     title: 'Javascript ES6 must-know features: const & let variables  | Web Developer\'s Thoughts',
     keywords: 'const let posts articles web developer guide tutorial javascript ecmascript6 es6',
     description: 'A guide about the most important features of Javascript ECMAScript 6. This article is about const & let variables: how they works and when to use them.'
+  },
+  og: {
+    title: 'Javascript ES6 must-know features: const & let variables  | Web Developer\'s Thoughts',
+    description: 'Javascript ES6 must-know features: const & let variables  | Web Developer\'s Thoughts',
+    url: `${config.baseDomain}/posts/const-and-let-variables.html`,
+    image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
   },
   header: header.en,
   footer: footer.en,
@@ -14,8 +22,8 @@ const postEn = {
     value: '2017-04-27T17:46:35+02:00',
     label: '27 April 2017'
   },
-  signatureUrl: '/en/about.html',
-  slug: '/en/posts/const-and-let-variables',
+  signatureUrl: '/about.html',
+  slug: '/posts/const-and-let-variables',
   title: 'Javascript ES6 must-know features: const & let variables',
   shortDescr: 'A guide about the most important features of Javascript ECMAScript 6. This article is about const & let variables: how they works and when to use them.',
   tags: [

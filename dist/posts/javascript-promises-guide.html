@@ -8,12 +8,18 @@
   <meta content="gdi" http-equiv="X-UA-TextLayoutMetrics">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="#009EDD" name="theme-color">
-  <meta name="HandheldFriendly" content="true"/> 
+  <meta name="HandheldFriendly" content="true"/>
   <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <title>Javascript promises guide: using async await | Web Developer&#39;s Thoughts</title>
   <meta name="description" content="A guide about javascript promises: what they are and how to use them effectively with async await.">
   <meta name="keywords" content="promises async await guide tutorial javascript ecmascript6 es6">
   <meta name="author" content="Giovanni Rodighiero">
+
+  <meta property="og:title" content="Javascript promises guide: using async await | Web Developer&#39;s Thoughts" />
+  <meta property="og:description" content="A guide about javascript promises: what they are and how to use them effectively with async await." />
+  <meta property="og:type" content="blog" />
+  <meta property="og:url" content="localhost:3000/posts/const-and-let-variables.html" />
+  <meta property="og:image" content="localhost:3000/images/homepage-hero_v1.jpg" />
 
   <link rel="stylesheet" href="/main.css">
 
@@ -69,7 +75,7 @@
         <span itemprop="position" content="2">&gt;</span>
       </li>
       <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
-        <a itemprop="item" href="/en/posts/javascript-promises-guide" class="breadcrumbs__link">
+        <a itemprop="item" href="/posts/javascript-promises-guide" class="breadcrumbs__link">
           <span itemprop="name">Javascript promises guide: using async await</span>
         </a>
       </li>
@@ -145,9 +151,9 @@
     </pre></code>
     <p class="post__caption">Improving the example.</p>
   
-    <p>This time the order of the results is not predictable, probably 'reference' will be the first thing printed, but it is wrong to make this kind of assumptions.</p>
+    <p>This time the order of the results is not predictable, probably 'reference' will be the first thing printed, but it is wrong to make this kind of assumptions truth be told.</p>
   
-    <p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, provided by a promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does for a success. You can use it like this:</p>
+    <p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, also provided by every promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does for a success. You can use it like this:</p>
   
     <pre><code class="javascript post__code">
       const myPromise = function(shouldSucceed) {
@@ -173,9 +179,13 @@
     </pre></code>
     <p class="post__caption">Using catch function.</p>
   
+    <p>This last syntax, with <code>then()</code> for handling the success callback and <code>catch()</code> for the failure one, is most popular and easy to read in my opinion and the one I suggest you to use.</p>
+  
+    <p></p>
+  
 </section>
     <section class="post-footer">
-  <p class="post-footer__signature">Posted by <a href="/en/about.html">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-05-19T20:46:35+02:00">19 May 2017</time></p>
+  <p class="post-footer__signature">Posted by <a href="/about.html">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-05-19T20:46:35+02:00">19 May 2017</time></p>
 </section>
   </article>
 

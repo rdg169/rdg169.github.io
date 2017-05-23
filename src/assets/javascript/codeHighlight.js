@@ -8,9 +8,9 @@ hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('xml', xml);
 
-const highlightCode = () => {
+const highlightCode = function() {
   const nodes = document.querySelectorAll('pre code');
-  nodes.forEach(node => hljs.highlightBlock(node));
+  nodes.forEach(function(node) { hljs.highlightBlock(node); });
 };
 
 export default highlightCode;
