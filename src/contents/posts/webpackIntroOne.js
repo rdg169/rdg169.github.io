@@ -16,6 +16,9 @@ const postEn = {
     url: `${config.baseDomain}/posts/const-and-let-variables.html`,
     image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
   },
+  serie: {
+    next: '/posts/frontend-pipeline-introduction-with-webpack-2-part-two'
+  },
   header: header.en,
   footer: footer.en,
   id: 1,
@@ -25,7 +28,7 @@ const postEn = {
   },
   signatureUrl: '/about.html',
   slug: '/posts/frontend-pipeline-introduction-with-webpack-2-part-one',
-  title: 'Frontend pipeline with webpack 2:<br> setting up babel (1 of 2)',
+  title: 'Frontend pipeline with webpack 2: setting up babel (1 of 2)',
   shortDescr: 'An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up babel traspiler.',
   tags: [
     {

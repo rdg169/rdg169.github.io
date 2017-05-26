@@ -1,3 +1,3 @@
 module.exports = {
-  baseDomain: 'localhost:3000'
+  baseDomain: 'webdeveloperthoughts.com'
 }

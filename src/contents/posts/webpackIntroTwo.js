@@ -15,6 +15,9 @@ const postEn = {
     url: `${config.baseDomain}/posts/const-and-let-variables.html`,
     image: `${config.baseDomain}/images/homepage-hero_v1.jpg`
   },
+  serie: {
+    prev: '/posts/frontend-pipeline-introduction-with-webpack-2-part-one'
+  },
   header: header.en,
   footer: footer.en,
   id: 2,

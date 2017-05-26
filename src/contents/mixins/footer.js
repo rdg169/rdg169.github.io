@@ -23,12 +23,12 @@ module.exports = {
         label: 'Homepage'
       },
       {
-        url: '/en/posts.html',
+        url: '/posts.html',
         label: 'Posts'
       },
       {
-        url: '/en/about.html',
-        label: 'About me'
+        url: '/about.html',
+        label: 'About'
       }
     ],
     socials: [],

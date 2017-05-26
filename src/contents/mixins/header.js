@@ -20,11 +20,11 @@ const headerEn = {
   links: [
     {
       label: 'Posts',
-      url: '/en/posts.html'
+      url: '/posts.html'
     },
     {
       label: 'About',
-      url: '/en/about.html'
+      url: '/about.html'
     }
   ]
 };

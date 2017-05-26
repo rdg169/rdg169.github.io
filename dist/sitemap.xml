@@ -1,0 +1,44 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+   </url>
+
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/about.html</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+   </url>
+
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts.html</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/const-and-let-variables.html</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/frontend-pipeline-introduction-with-webpack-2-part-two.html</loc>
+      <lastmod>2017-05-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+</urlset> 

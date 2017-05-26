@@ -21,6 +21,12 @@
   <meta property="og:url" content="{{og.url}}" />
   <meta property="og:image" content="{{og.image}}" />
 
+  {% if serie.prev %}
+    <link rel="prev" href="{{serie.prev}}">
+  {% endif %}
+  {% if serie.next %}
+    <link rel="next" href="{{serie.next}}">
+  {% endif %}
   <link rel="stylesheet" href="/main.css">
 
   <!--[if lt IE 9]>
