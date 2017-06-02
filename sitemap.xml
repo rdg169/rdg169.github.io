@@ -41,4 +41,11 @@
       <priority>0.7</priority>
    </url>
 
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/javascript-promises-guide-using-async-await.html</loc>
+      <lastmod>2017-06-01</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
 </urlset> 
