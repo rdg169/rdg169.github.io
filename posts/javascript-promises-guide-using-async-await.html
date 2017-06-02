@@ -1,0 +1,449 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="320" name="MobileOptimized">
+  <meta content="gdi" http-equiv="X-UA-TextLayoutMetrics">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="#009EDD" name="theme-color">
+  <meta name="HandheldFriendly" content="true"/>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>Javascript promises guide: using async await in both frontend and backend| Web Developer&#39;s Thoughts</title>
+  <meta name="description" content="A guide about javascript promises: what they are and how to use them effectively with async await.">
+  <meta name="keywords" content="promises  nodejs node.js async await guide tutorial javascript ecmascript6 es6">
+  <meta name="author" content="Giovanni Rodighiero">
+
+  <meta property="og:title" content="Javascript promises guide: using async await in both frontend and backend| Web Developer&#39;s Thoughts" />
+  <meta property="og:description" content="A guide about javascript promises: what they are and how to use them effectively with async await." />
+  <meta property="og:type" content="blog" />
+  <meta property="og:url" content="webdeveloperthoughts.com/posts/javascript-promises-guide-using-async-await.html" />
+  <meta property="og:image" content="webdeveloperthoughts.com/images/og_image.jpg" />
+
+  
+  
+  <link rel="stylesheet" href="/main.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <link async rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-right"
+})});
+</script>
+</head>
+
+<body>
+  
+  <header class="site-header">
+  <div class="site-header__left">
+    <p class="site-header__title">
+      <a href="/" class="site-header__logo-link">
+        Web developer&#39;s thoughts
+      </a>
+    </p>
+    <a href="/" class="site-header__logo-link">
+      <abbr title="Web developer&#39;s thoughts" class="site-header__short-title">W.D.T.</abbr>
+    </a>
+  </div>
+  <nav class="site-nav">
+    <ul class="site-nav__list">
+      
+        
+          <li class="site-nav__list-item">
+            <a class="site-nav__link" href="/posts.html">Posts</a>
+          </li>
+        
+      
+        
+          <li class="site-nav__list-item">
+            <a class="site-nav__link" href="/about.html">About</a>
+          </li>
+        
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <main>
+    
+  <article>
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs">
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/" class="breadcrumbs__link">
+          <span itemprop="name">Home</span></a>
+        <span itemprop="position" content="1">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/posts.html" class="breadcrumbs__link">
+          <span itemprop="name">Posts</span></a>
+        <span itemprop="position" content="2">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/posts/javascript-promises-guide-using-async-await" class="breadcrumbs__link">
+          <span itemprop="name">Javascript promises guide: using async await in both frontend and backend</span>
+        </a>
+      </li>
+    </ol>
+    <section class="post-hero">
+  <h1 class="post-hero__title">Javascript promises guide: using async await in both frontend and backend</h1>
+  <h2 class="post-hero__subtitle">A guide about javascript promises, what they are and how to use them effectively with async await.</h2>
+</section>
+    <section class="post">
+  
+    <h3>Introduction</h3>
+  
+    <p>If you are writing javascript you already know keeping your code asynchronous is a must and sometimes achieving this can be very painful, specially if you need to impose a specific order among your async functions.</p>
+  
+    <p>There are some modules out there that handle this for you, <a href="https://github.com/caolan/async" target="_blank">async</a> for instance, if you like the "callback" approach, but there is another way to achieve asynchronous programming without making a mess: Promises !</p>
+  
+    <p>A promise is an async function that lets you specify what to do if everything goes as planned and what to do otherwise. <br> Here's a simple promise:</p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = new Promise(function (resolve, reject) {
+        // ... doing my stuff
+        if (true)
+          return resolve('ok');
+        return reject('error');
+      });
+    </pre></code>
+    <p class="post__caption">Base promise.</p>
+  
+    <p>As you can see <code>Promise()</code> takes a function as its only argument, this function, in turn, has two arguments:
+      <ul>
+        <li><code>resolve</code>: a function to call if the promise should succeed;</li>
+        <li><code>reject</code>: a function to call if the promise should fail.</li>
+      </ul>
+    </p>
+  
+    <p>In the previous example the promise will succeed, of course, and will return the string 'ok'. Now here's how to use that promise:</p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = new Promise(function (resolve, reject) {
+        // ... doing my stuff
+        if (true)
+          return resolve('ok');
+        return reject('error');
+      });
+
+      myPromise.then(function(result) {
+        console.log('promise done', result);
+      });
+      console.log('reference');
+
+    </pre></code>
+    <p class="post__caption">Using the base promise.</p>
+  
+    <p>A promise instance exposes a <code>then(succeedCallback, failureCallback)</code> function to handle the results of its execution once it has finished, it takes two callbacks: one is used in case of a succeed promise, the other in case of a failed one. <br> If we run the code above it will <u>probably</u> log 'reference' first and then 'promise done ok', this because the promise is asynchronous so the last <code>console.log</code> does not wait for the previous code to be done, but runs in parallel with it like it would do if instead of a promise there was a simple function with a callback.</p>
+  
+    <p>Now let's change the example a bit to make it more flexible:</p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+      myPromise(true).then(function(result) {
+        console.log('first promise done', result);
+      });
+      myPromise(false).then(null, function(error) {
+        console.log('second promise done', error);
+      });
+      console.log('reference');
+    </pre></code>
+    <p class="post__caption">Improving the example.</p>
+  
+    <p>Now we are handling the rejection case as well through the second callback function of <code>then()</code>, note that also this second promise handling runs in parallel with the previous one and the last <code>console.log</code>, making all our code asynchronous and not blocking, like it should always be.</p>
+  
+    <p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, also provided by every promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does, but this time it handles only the error case. <br>You can use it like this:</p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+
+      myPromise(true)
+        .then(function(result) {
+          console.log('first promise done', result);
+        });
+
+      myPromise(false)
+        .catch(function(error) {
+          console.log('second promise done', error);
+        });
+      console.log('reference');
+    </pre></code>
+    <p class="post__caption">Using catch function.</p>
+  
+    <p>Now let's make something clear, every time you call <code>then()</code> or <code>catch()</code> the promise body is going to be executed, so if you don't know a priori what your promise will do (most scenarios are like this, think of an ajax request, or everything that can return an error) it is <strong>wrong</strong> to resolve the same promise two times, like in this last example, instead you need to chain the two functions: </p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+
+      const value = getRandomBoolValue();
+
+      myPromise(value)
+        .then(function(result) {
+          console.log('first promise done', result);
+        })
+        .catch(function(error) {
+          console.log('second promise done', error);
+        });
+
+      console.log('reference');
+    </pre></code>
+    <p class="post__caption">Chaining then() and catch().</p>
+  
+    <p>With this syntax the correct function will be automatically called, based of course, on the behaviour stated inside the promise body, that means:
+      <ul>
+        <li>Calling <code>resolve()</code> inside the promise's body will result in executing the <code>then()</code> callback;</li>
+        <li>Calling <code>reject()</code> inside the promise's body will result in executing the <code>catch()</code> callback.</li>
+      </ul>
+    </p>
+  
+    <h3>Async await code flow</h3>
+  
+    <p>As you probably already inferred by now, to run some code only after a promise resolved, you need to put it inside its callback function, creating a code flow that looks like a <a href="http://callbackhell.com" target="_blank">callback-hell</a>, this is the exact situation where async/await shines.</p>
+  
+    <p>The two keywords behave in this way:
+      <ul>
+        <li><code>async</code> should be put in your function declaration, it states that the function is asynchronous and will run in parallel with rest of the code;</li>
+        <li><code>await</code> is available only inside a functions marked as <i>async</i> and lets you resolve a promise in a <b>synchronous</b> way, syntactically speaking, while keeping the actual code flow <b>asynchronous</b>.</li>
+      </ul>
+    </p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+
+      const promiseHandler = async function() {
+        const value = getRandomBoolValue();
+
+        const result = await myPromise(value);
+        console.log('after the promise resolved');
+      }
+
+      promiseHandler();
+      console.log('not predictable');
+
+    </pre></code>
+    <p class="post__caption">Using async/await.</p>
+  
+    <p>Things to notice:
+      <ul>
+        <li>since <code>await</code> is available only inside a <code>async</code> function, we added <code>promiseHandler</code>;</li>
+        <li>we assigned the result of <code>myPromise()</code> to a variable through the keyword <code>await</code>: <code>const result</code> will contain the value that you passed inside the <code>resolve()</code> function in the promise body;</li>
+        <li>all the code above the statement that uses the <code>await</code> keyword will run <b>only after the promise has resolved</b>, so you get the feel of writing synchronous code while the actual flow in still asynchronous;</li>
+        <li>as a proof of the last point, the <code>console.log()</code> after calling <code>promiseHandler()</code> runs in parallel with that function, since it is marked as <i>async</i>.</li>
+      </ul>
+    </p>
+  
+    <h3>Adding try/catch statement</h3>
+  
+    <p>We missed one thing though: handling the result of the <code>reject()</code> function called in the promise body. In order to do this we are going to use the <code>try/catch</code> statement, changing the previous code like this:</p>
+  
+    <pre><code class="javascript post__code">
+      const myPromise = function(shouldSucceed) {
+        return new Promise(function (resolve, reject) {
+          if (shouldSucceed)
+            return resolve('ok');
+          return reject('error');
+        });
+      };
+
+      const promiseHandler = async function() {
+        const value = getRandomBoolValue();
+        try {
+          const result = await myPromise(value);
+          console.log('promise resolved', value);
+        } catch(error) {
+          console.log('promise resolved', error);
+        }
+        console.log('after the promise resolved');
+      }
+
+      promiseHandler();
+      console.log('not predictable');
+    </pre></code>
+    <p class="post__caption">Using async/await with try/catch.</p>
+  
+    <p>With the try catch structure, if the promise returns an error (so <code>reject()</code> is called) all the code written above the <code>await</code> statement <b>and</b> inside the <code>try</code> scope will be skipped, jumping directly inside the <code>catch</code> scope, in which you have a variable (named <code>error</code> in the example) that contains what you passed to the <code>reject()</code> function inside the promise body.</p>
+  
+    <p>Also notice that everything after all the <code>try/catch</code> structure will wait for one of those branches to finsh up before being executed.</p>
+  
+    <h3>Real world examples</h3>
+  
+    <p>Let's see some real world use cases in which async/await comes in handy, both in backend (Node.js) and frontend.</p>
+  
+    <h4>Node.js</h4>
+  
+    <p>Take the case of a simple <a href="https://stackoverflow.com/questions/1592534/what-is-token-based-authentication" target="_blank">token-based login flow</a> these are the action you generally need to perform:
+      <ul>
+        <li>Query the database using the provided email/username;</li>
+        <li>If the corresponding user has been found, hash the user-provided password and check if the result matches the value saved in the database;</li>
+        <li>If the two hashes are equals, generate the token to send back to the user.</li>
+      </ul>
+    </p>
+  
+    <p>This is how it will probably look like if we had to write it with <b>callbacks</b>:</p>
+  
+    <pre><code class="javascript post__code">
+
+    const login = function(req, res) {
+      // query for the user
+      User.findOne({ email: req.body.email }, function(err, foundUser) {
+        if (err)
+          return res.send('wrong email or password');
+
+        // hash the submitted pasword
+        hashPsw(req.body.password, function(err, hashedPassword) {
+          if (err)
+            return res.send('error during psw hashing');
+          if (foundUser.password != hashedPassword)
+            return res.send('wrong email or password');
+          
+          // create the token to send back
+          generateToken(foundUser.email, opts, function(err, token) {
+            if (err)
+              return res.send('error while generating token');
+            return res.send(token);
+          });
+        });
+      });
+    }
+    </pre></code>
+    <p class="post__caption">Token-based auth with callbacks</p>
+  
+    <p>This, instead, is how it will look like if the three main function used (<code>findOne()</code>, <code>hashPsw()</code>, <code>generateToken()</code>) were promises:</p>
+  
+    <pre><code class="javascript post__code">
+
+    const login = async function(req, res) {
+      try {
+        const fondUser = await User.findOne({ email: req.body.email });
+        const hashedPassword = await hashPsw(fondUser.password);
+        if (hashedPassword != foundUser.password)
+          return res.send('wrong email or password');
+        const token = await generateToken(foundUser.email, opts);
+      } catch(error) {
+        // catch all possible errors and delegate the handling to a particular function
+        return handleErrors(error);
+      }
+      return res.send(token);
+    }
+
+    </pre></code>
+    <p class="post__caption">Token-based auth with async/await.</p>
+  
+    <p>As you can see the code is much more cleaner and readable, while it keeps being asynchronous.<br> Notice that is also possible to nest multiple <code>try/catch</code> to handle the errors case by case, the previous example though, uses a "catch all" style that delegates the actual error handling to a specific function. In this approach the <code>error</code> object is supposed to contain some information about it, like if it comes from validation or internal operation and so on, to make the <code>handleErrors</code> function able to do the right thing with that error.</p>
+  
+    <h4>Frontend</h4>
+  
+    <p>Since we did a login example for a backend service, here it is a frontend function that could make use of it:</p>
+  
+    <pre><code class="javascript post__code">
+
+    const login = async function(payload) {
+      startLoaderAnimation(); // start spinning while waiting for server response
+      try {
+        const token = await Api.login(payload); // submit the login and wait for the response
+        stopLoaderAnimation(); // stop the pinner, we got our token
+        // wait for a quick success message animation and contemporary save the token to the browser's cookies
+        await Promise.all([showSuccessMessage, setTokenToCookies(token)];
+        redirectToHomepage(); // redirect to home when both of the previous tasks are done
+      } catch (error) { // we got an error in the login, probably wrong username/password
+        stopLoaderAnimation(); // stop the spinning as above
+        await showFailureMessage(error); // show a quick error message animation
+        showUsefullTips(); // when the animation ends, display some tips like "you need help" or "forgot your password"
+      }
+    }
+
+    </pre></code>
+    <p class="post__caption">Frontend token-based auth with async await.</p>
+  
+    <h3>Conclusions</h3>
+  
+    <p>Promises are a great tool to simplify your code flow and I hope that after reading this post you feel more confortable with them. Remember that Node.js supports Promises only after version <code>7.6</code> and if you use them in frontend you will need a traspiler like Babel to ensure cross browser compatibility: checkout my <a href="/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html" target="_blank">webpack pipeline guide</a> if you don't know how to set it up yet.</p>
+  
+</section>
+    <section class="post-footer">
+  <p class="post-footer__signature">Posted by <a href="/about.html">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-06-1T15:32:35+02:00">1 June 2017</time></p>
+</section>
+  </article>
+
+  </main>
+  
+    <footer class="footer">
+  <ul class="footer-sitemap">
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/">Homepage</a>
+      </li>
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/posts.html">Posts</a>
+      </li>
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/about.html">About</a>
+      </li>
+    
+  </ul>
+
+  <ul class="footer-policies">
+    <li class="footer-policies__item">
+    <a href="//www.iubenda.com/privacy-policy/8135513" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </li>
+  </ul>
+  <div class="footer__signature">
+    <p></p>
+  </div>
+</footer>
+  
+
+  <script src="/bundle.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99978588-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

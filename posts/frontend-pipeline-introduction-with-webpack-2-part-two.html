@@ -12,14 +12,14 @@
   <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <title>Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer&#39;s Thoughts</title>
   <meta name="description" content="An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS.">
-  <meta name="keywords" content="webpack pipeline frontend articles web developer guide tutorial javascript ecmascript6 es6">
+  <meta name="keywords" content="webpack pipeline Sass-loader ExtractTextPlugin postCSS frontend articles web developer guide tutorial javascript ecmascript6 es6">
   <meta name="author" content="Giovanni Rodighiero">
 
   <meta property="og:title" content="Frontend pipeline introduction with webpack 2: Sass, ExtractTextPlugin and postCSS (2 of 2) | Web Developer&#39;s Thoughts" />
   <meta property="og:description" content="An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up Sass, ExtractTextPlugin and postCSS" />
   <meta property="og:type" content="blog" />
-  <meta property="og:url" content="webdeveloperthoughts.com/posts/const-and-let-variables.html" />
-  <meta property="og:image" content="webdeveloperthoughts.com/images/homepage-hero_v1.jpg" />
+  <meta property="og:url" content="webdeveloperthoughts.com/posts/frontend-pipeline-introduction-with-webpack-2-part-two.html" />
+  <meta property="og:image" content="webdeveloperthoughts.com/images/og_image.jpg" />
 
   
     <link rel="prev" href="/posts/frontend-pipeline-introduction-with-webpack-2-part-one">
@@ -30,8 +30,8 @@
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <link async rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
 window.addEventListener("load", function(){
 window.cookieconsent.initialise({
@@ -59,7 +59,7 @@ window.cookieconsent.initialise({
       </a>
     </p>
     <a href="/" class="site-header__logo-link">
-      <abbr title="Web developer&#39;s thoughts" class="site-header__short-title">W.D.T.</abbrp>
+      <abbr title="Web developer&#39;s thoughts" class="site-header__short-title">W.D.T.</abbr>
     </a>
   </div>
   <nav class="site-nav">
@@ -80,6 +80,7 @@ window.cookieconsent.initialise({
     </ul>
   </nav>
 </header>
+
 
   <main>
     
