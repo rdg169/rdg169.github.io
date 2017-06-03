@@ -124,28 +124,28 @@ window.cookieconsent.initialise({
     <p>But first things first: we need to include our stylesheets file in the main bundle, so let's create a <code>stylesheets/</code> folder into <code>"./src"</code>, add a <code>index.css</code> file and write some css rules in it, like this:</p>
   
     <pre><code class="css post__code">
-      // ./src/stylesheet/index.css
-      .foo {
-        color: red;
-        font-size: 30px;
-        font-style: italic;
-      }
+// ./src/stylesheet/index.css
+.foo {
+  color: red;
+  font-size: 30px;
+  font-style: italic;
+}
 
-      .bar {
-        color: blue;
-        font-size: 10px;
-        font-weight: bold;
-      }
+.bar {
+  color: blue;
+  font-size: 10px;
+  font-weight: bold;
+}
     </pre></code>
     <p class="post__caption">./src/stylesheet/index.css</p>
   
     <p>Now we can import <code>index.css</code> in our entry point file, like we did for the javascript in the previous part, to have something like this:</p>
   
     <pre><code class="javascript post__code">
-      // ./src/index.js
-      import scripts from './javascript/';
+// ./src/index.js
+import scripts from './javascript/';
 
-      import styles from './stylesheets/index.css';
+import styles from './stylesheets/index.css';
     </pre></code>
     <p class="post__caption">./src/index.js</p>
   
@@ -154,12 +154,12 @@ window.cookieconsent.initialise({
     <p>Now we need to add a rule inside <code>webpack.config.js</code> to catch all .css files and apply this new loader to be able to bundle them with the javascript:</p>
   
     <pre><code class="javascript post__code">
-      // ./webpack.config.js
-      ...
-      {
-        test: /.css$/, // get all .css files
-        use: ['css-loader'] // apply css-loader to them
-      }
+// ./webpack.config.js
+...
+{
+  test: /.css$/, // get all .css files
+  use: ['css-loader'] // apply css-loader to them
+}
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>
   
@@ -168,29 +168,29 @@ window.cookieconsent.initialise({
     <p>style-loader takes all our css and injects it in a <code>&lt;style&gt;</code> tag in the DOM. Let's move on and install it with <code>npm install style-loader --save-dev</code> then we edit <code>webpack.config.js</code> to instruct webpack to actually use it:</p>
   
     <pre><code class="javascript post__code">
-      // ./webpack.config.js
-      ...
-      {
-        test: /.css$/,
-        use: ['style-loader', 'css-loader'] // also apply style-loader to every .css file
-      }
+// ./webpack.config.js
+...
+{
+  test: /.css$/,
+  use: ['style-loader', 'css-loader'] // also apply style-loader to every .css file
+}
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>
   
     <p>To appreciate the result this time we really need something we left behind: the HTML ! So we add a <code>index.html</code> in our <code>./dist/</code> folder, and write a basic html page layout, like this:</p>
   
     <pre><code class="xml post__code">
-      // ./dist/index.html
-      &lt;!doctype html&gt;
-      &lt;html lang="en"&gt;
-        &lt;head&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-          &lt;h1 class="foo"&gt;that's foo&lt;/h1&gt;
-          &lt;h2 class="bar"&gt;that's bar&lt;/h2&gt;
-          &lt;script src="./bundle.js"&gt;&lt;/script&gt;
-        &lt;/body&gt;
-      &lt;/html&gt;
+// ./dist/index.html
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1 class="foo"&gt;that's foo&lt;/h1&gt;
+    &lt;h2 class="bar"&gt;that's bar&lt;/h2&gt;
+    &lt;script src="./bundle.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
     </pre></code>
     <p class="post__caption">./dist/index.html</p>
   
@@ -201,42 +201,42 @@ window.cookieconsent.initialise({
     <p>By now there is still a thing that you probably don't like, the style injected in the DOM instead of a dedicated file, but we can easily fix that with a plugin: <a href="https://github.com/webpack-contrib/extract-text-webpack-plugin">extract-text-webpack-plugin</a>. Install it with <code>npm install --save-dev extract-text-webpack-plugin</code> and change <code>webpack.config.js</code> like this:</p>
   
     <pre><code class="javascript post__code">
-    // webpack.config.js
-    const path = require('path');
-    const ExtractTextPlugin = require("extract-text-webpack-plugin"); // require the plugin
+// webpack.config.js
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); // require the plugin
 
-    module.exports = {
-      entry: './src/index.js',
-      output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist')
-      },
-      module: {
-        rules: [
-          {
-            test: /.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env']
-              }
-            }
-          },
-          {
-            test: /.css$/, // get every .css file, as we did before
-            use: ExtractTextPlugin.extract({ // this time apply ExtractTextPlugin to them, which uses css-loader as an
-                                             // internal loader and style-loader (the one we used before) as fallback
-              fallback: "style-loader",
-              use: "css-loader"
-            })
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, './dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
           }
-        ],
+        }
       },
-      plugins: [
-        new ExtractTextPlugin("styles.css"), // set up the plugin with the name to use in the output file (refer to the options section in the docs)
-      ]
-    }
+      {
+        test: /.css$/, // get every .css file, as we did before
+        use: ExtractTextPlugin.extract({ // this time apply ExtractTextPlugin to them, which uses css-loader as an
+                                          // internal loader and style-loader (the one we used before) as fallback
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      }
+    ],
+  },
+  plugins: [
+    new ExtractTextPlugin("styles.css"), // set up the plugin with the name to use in the output file (refer to the options section in the docs)
+  ]
+}
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>
   
@@ -251,38 +251,38 @@ window.cookieconsent.initialise({
     <p>Then we need a simple update on <code>webpack.config.js</code>:</p>
   
     <pre><code class="javascript post__code">
-    // webpack.config.js
-    ...
-    {
-      test: /.scss$/, // now we look for .scss (or .sass or both of them, just change the regEx)
-      use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use: ['css-loader', 'sass-loader'] // here we add sass-loader to be used with css-loader
-      })
-    }
-    ...
-    </pre></code>
-    <p class="post__caption">./webpack.config.js</p>
+// webpack.config.js
+...
+{
+  test: /.scss$/, // now we look for .scss (or .sass or both of them, just change the regEx)
+  use: ExtractTextPlugin.extract({
+    fallback: "style-loader",
+    use: ['css-loader', 'sass-loader'] // here we add sass-loader to be used with css-loader
+  })
+}
+...
+</pre></code>
+<p class="post__caption">./webpack.config.js</p>
   
     <p>After this we can rename <code>index.css</code> to <code>index.scss</code> and refactor it with some sass syntax, like this:</p>
   
     <pre><code class="css post__code">
-      // ./src/stylesheet/index.scss
+  // ./src/stylesheet/index.scss
 
-      $red: #ad0c1e;
-      $blue: #0b579e;
+  $red: #ad0c1e;
+  $blue: #0b579e;
 
-      .foo {
-        color: $red;
-        font-size: 30px;
-        font-style: italic;
-      }
+  .foo {
+    color: $red;
+    font-size: 30px;
+    font-style: italic;
+  }
 
-      .bar {
-        color: $blue;
-        font-size: 10px;
-        font-weight: bold;
-      }
+  .bar {
+    color: $blue;
+    font-size: 10px;
+    font-weight: bold;
+  }
     </pre></code>
     <p class="post__caption">./src/stylesheet/index.scss</p>
   
@@ -295,50 +295,50 @@ window.cookieconsent.initialise({
     <p>As usual it can be installed with <code>npm install postcss-loader --save-dev</code> and the <code>webpack.config.js</code> needs to be updated like this:</p>
   
     <pre><code class="javascript post__code">
-    // webpack.config.js
-    ...
-    {
-      test: /.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use: [
-          'css-loader',
-          { // here we need extended syntax to configure postcss, so we use as object instead of a simple string with the name of the loader
-            loader: 'postcss-loader', // the loader to be used
-            options: { // options of the loader
-              plugins: [require('autoprefixer')()] // plugin to be used by the loader, in our case just autoprefixer (no need to explicitly install it)
-            }
-          },
-          'sass-loader'
-        ]
-      })
-    }
+// webpack.config.js
+...
+{
+  test: /.scss$/,
+  use: ExtractTextPlugin.extract({
+    fallback: "style-loader",
+    use: [
+      'css-loader',
+      { // here we need extended syntax to configure postcss, so we use as object instead of a simple string with the name of the loader
+        loader: 'postcss-loader', // the loader to be used
+        options: { // options of the loader
+          plugins: [require('autoprefixer')()] // plugin to be used by the loader, in our case just autoprefixer (no need to explicitly install it)
+        }
+      },
+      'sass-loader'
+    ]
+  })
+}
     </pre></code>
     <p class="post__caption">./webpack.config.js</p>
   
     <p>To try it out we can add some css rules that need prefixes on them, <code>display: flex;</code> is a good example, let's update our <code>index.scss</code> with another class:</p>
   
     <pre><code class="css post__code">
-      // ./src/stylesheet/index.scss
+// ./src/stylesheet/index.scss
 
-      $red: #ad0c1e;
-      $blue: #0b579e;
+$red: #ad0c1e;
+$blue: #0b579e;
 
-      .foo {
-        color: $red;
-        font-size: 30px;
-        font-style: italic;
-      }
+.foo {
+  color: $red;
+  font-size: 30px;
+  font-style: italic;
+}
 
-      .bar {
-        color: $blue;
-        font-size: 10px;
-        font-weight: bold;
-      }
+.bar {
+  color: $blue;
+  font-size: 10px;
+  font-weight: bold;
+}
 
-      .flex-it-out {
-        display: flex;
-      }
+.flex-it-out {
+  display: flex;
+}
     </pre></code>
     <p class="post__caption">./src/stylesheet/index.scss</p>
   

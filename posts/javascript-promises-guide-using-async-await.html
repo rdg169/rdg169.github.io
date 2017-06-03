@@ -114,13 +114,12 @@ window.cookieconsent.initialise({
   
     <p>A promise is an async function that lets you specify what to do if everything goes as planned and what to do otherwise. <br> Here's a simple promise:</p>
   
-    <pre><code class="javascript post__code">
-      const myPromise = new Promise(function (resolve, reject) {
-        // ... doing my stuff
-        if (true)
-          return resolve('ok');
-        return reject('error');
-      });
+    <pre><code class="javascript post__code">const myPromise = new Promise(function (resolve, reject) {
+  // ... doing my stuff
+  if (true)
+    return resolve('ok');
+  return reject('error');
+});
     </pre></code>
     <p class="post__caption">Base promise.</p>
   
@@ -134,18 +133,17 @@ window.cookieconsent.initialise({
     <p>In the previous example the promise will succeed, of course, and will return the string 'ok'. Now here's how to use that promise:</p>
   
     <pre><code class="javascript post__code">
-      const myPromise = new Promise(function (resolve, reject) {
-        // ... doing my stuff
-        if (true)
-          return resolve('ok');
-        return reject('error');
-      });
+const myPromise = new Promise(function (resolve, reject) {
+  // ... doing my stuff
+  if (true)
+    return resolve('ok');
+  return reject('error');
+});
 
-      myPromise.then(function(result) {
-        console.log('promise done', result);
-      });
-      console.log('reference');
-
+myPromise.then(function(result) {
+  console.log('promise done', result);
+});
+console.log('reference');
     </pre></code>
     <p class="post__caption">Using the base promise.</p>
   
@@ -154,20 +152,20 @@ window.cookieconsent.initialise({
     <p>Now let's change the example a bit to make it more flexible:</p>
   
     <pre><code class="javascript post__code">
-      const myPromise = function(shouldSucceed) {
-        return new Promise(function (resolve, reject) {
-          if (shouldSucceed)
-            return resolve('ok');
-          return reject('error');
-        });
-      };
-      myPromise(true).then(function(result) {
-        console.log('first promise done', result);
-      });
-      myPromise(false).then(null, function(error) {
-        console.log('second promise done', error);
-      });
-      console.log('reference');
+const myPromise = function(shouldSucceed) {
+  return new Promise(function (resolve, reject) {
+    if (shouldSucceed)
+      return resolve('ok');
+    return reject('error');
+  });
+};
+myPromise(true).then(function(result) {
+  console.log('first promise done', result);
+});
+myPromise(false).then(null, function(error) {
+  console.log('second promise done', error);
+});
+console.log('reference');
     </pre></code>
     <p class="post__caption">Improving the example.</p>
   
@@ -176,49 +174,49 @@ window.cookieconsent.initialise({
     <p>We can still improve the promise handling with another function, <code>catch(failureCallback)</code>, also provided by every promise instance, it takes a callback to execute in case of a failure just like <code>then()</code> does, but this time it handles only the error case. <br>You can use it like this:</p>
   
     <pre><code class="javascript post__code">
-      const myPromise = function(shouldSucceed) {
-        return new Promise(function (resolve, reject) {
-          if (shouldSucceed)
-            return resolve('ok');
-          return reject('error');
-        });
-      };
+const myPromise = function(shouldSucceed) {
+  return new Promise(function (resolve, reject) {
+    if (shouldSucceed)
+      return resolve('ok');
+    return reject('error');
+  });
+};
 
-      myPromise(true)
-        .then(function(result) {
-          console.log('first promise done', result);
-        });
+myPromise(true)
+  .then(function(result) {
+    console.log('first promise done', result);
+  });
 
-      myPromise(false)
-        .catch(function(error) {
-          console.log('second promise done', error);
-        });
-      console.log('reference');
+myPromise(false)
+  .catch(function(error) {
+    console.log('second promise done', error);
+  });
+console.log('reference');
     </pre></code>
     <p class="post__caption">Using catch function.</p>
   
     <p>Now let's make something clear, every time you call <code>then()</code> or <code>catch()</code> the promise body is going to be executed, so if you don't know a priori what your promise will do (most scenarios are like this, think of an ajax request, or everything that can return an error) it is <strong>wrong</strong> to resolve the same promise two times, like in this last example, instead you need to chain the two functions: </p>
   
     <pre><code class="javascript post__code">
-      const myPromise = function(shouldSucceed) {
-        return new Promise(function (resolve, reject) {
-          if (shouldSucceed)
-            return resolve('ok');
-          return reject('error');
-        });
-      };
+const myPromise = function(shouldSucceed) {
+  return new Promise(function (resolve, reject) {
+    if (shouldSucceed)
+      return resolve('ok');
+    return reject('error');
+  });
+};
 
-      const value = getRandomBoolValue();
+const value = getRandomBoolValue();
 
-      myPromise(value)
-        .then(function(result) {
-          console.log('first promise done', result);
-        })
-        .catch(function(error) {
-          console.log('second promise done', error);
-        });
+myPromise(value)
+  .then(function(result) {
+    console.log('first promise done', result);
+  })
+  .catch(function(error) {
+    console.log('second promise done', error);
+  });
 
-      console.log('reference');
+console.log('reference');
     </pre></code>
     <p class="post__caption">Chaining then() and catch().</p>
   
@@ -241,24 +239,23 @@ window.cookieconsent.initialise({
     </p>
   
     <pre><code class="javascript post__code">
-      const myPromise = function(shouldSucceed) {
-        return new Promise(function (resolve, reject) {
-          if (shouldSucceed)
-            return resolve('ok');
-          return reject('error');
-        });
-      };
+const myPromise = function(shouldSucceed) {
+  return new Promise(function (resolve, reject) {
+    if (shouldSucceed)
+      return resolve('ok');
+    return reject('error');
+  });
+};
 
-      const promiseHandler = async function() {
-        const value = getRandomBoolValue();
+const promiseHandler = async function() {
+  const value = getRandomBoolValue();
 
-        const result = await myPromise(value);
-        console.log('after the promise resolved');
-      }
+  const result = await myPromise(value);
+  console.log('after the promise resolved');
+}
 
-      promiseHandler();
-      console.log('not predictable');
-
+promiseHandler();
+console.log('not predictable');
     </pre></code>
     <p class="post__caption">Using async/await.</p>
   
@@ -276,27 +273,27 @@ window.cookieconsent.initialise({
     <p>We missed one thing though: handling the result of the <code>reject()</code> function called in the promise body. In order to do this we are going to use the <code>try/catch</code> statement, changing the previous code like this:</p>
   
     <pre><code class="javascript post__code">
-      const myPromise = function(shouldSucceed) {
-        return new Promise(function (resolve, reject) {
-          if (shouldSucceed)
-            return resolve('ok');
-          return reject('error');
-        });
-      };
+const myPromise = function(shouldSucceed) {
+  return new Promise(function (resolve, reject) {
+    if (shouldSucceed)
+      return resolve('ok');
+    return reject('error');
+  });
+};
 
-      const promiseHandler = async function() {
-        const value = getRandomBoolValue();
-        try {
-          const result = await myPromise(value);
-          console.log('promise resolved', value);
-        } catch(error) {
-          console.log('promise resolved', error);
-        }
-        console.log('after the promise resolved');
-      }
+const promiseHandler = async function() {
+  const value = getRandomBoolValue();
+  try {
+    const result = await myPromise(value);
+    console.log('promise resolved', value);
+  } catch(error) {
+    console.log('promise resolved', error);
+  }
+  console.log('after the promise resolved');
+}
 
-      promiseHandler();
-      console.log('not predictable');
+promiseHandler();
+console.log('not predictable');
     </pre></code>
     <p class="post__caption">Using async/await with try/catch.</p>
   
@@ -321,50 +318,47 @@ window.cookieconsent.initialise({
     <p>This is how it will probably look like if we had to write it with <b>callbacks</b>:</p>
   
     <pre><code class="javascript post__code">
+const login = function(req, res) {
+  // query for the user
+  User.findOne({ email: req.body.email }, function(err, foundUser) {
+    if (err)
+      return res.send('wrong email or password');
 
-    const login = function(req, res) {
-      // query for the user
-      User.findOne({ email: req.body.email }, function(err, foundUser) {
+    // hash the submitted pasword
+    hashPsw(req.body.password, function(err, hashedPassword) {
+      if (err)
+        return res.send('error during psw hashing');
+      if (foundUser.password != hashedPassword)
+        return res.send('wrong email or password');
+      
+      // create the token to send back
+      generateToken(foundUser.email, opts, function(err, token) {
         if (err)
-          return res.send('wrong email or password');
-
-        // hash the submitted pasword
-        hashPsw(req.body.password, function(err, hashedPassword) {
-          if (err)
-            return res.send('error during psw hashing');
-          if (foundUser.password != hashedPassword)
-            return res.send('wrong email or password');
-          
-          // create the token to send back
-          generateToken(foundUser.email, opts, function(err, token) {
-            if (err)
-              return res.send('error while generating token');
-            return res.send(token);
-          });
-        });
+          return res.send('error while generating token');
+        return res.send(token);
       });
-    }
+    });
+  });
+}
     </pre></code>
     <p class="post__caption">Token-based auth with callbacks</p>
   
     <p>This, instead, is how it will look like if the three main function used (<code>findOne()</code>, <code>hashPsw()</code>, <code>generateToken()</code>) were promises:</p>
   
     <pre><code class="javascript post__code">
-
-    const login = async function(req, res) {
-      try {
-        const fondUser = await User.findOne({ email: req.body.email });
-        const hashedPassword = await hashPsw(fondUser.password);
-        if (hashedPassword != foundUser.password)
-          return res.send('wrong email or password');
-        const token = await generateToken(foundUser.email, opts);
-      } catch(error) {
-        // catch all possible errors and delegate the handling to a particular function
-        return handleErrors(error);
-      }
-      return res.send(token);
-    }
-
+const login = async function(req, res) {
+  try {
+    const fondUser = await User.findOne({ email: req.body.email });
+    const hashedPassword = await hashPsw(fondUser.password);
+    if (hashedPassword != foundUser.password)
+      return res.send('wrong email or password');
+    const token = await generateToken(foundUser.email, opts);
+  } catch(error) {
+    // catch all possible errors and delegate the handling to a particular function
+    return handleErrors(error);
+  }
+  return res.send(token);
+}
     </pre></code>
     <p class="post__caption">Token-based auth with async/await.</p>
   
@@ -375,22 +369,20 @@ window.cookieconsent.initialise({
     <p>Since we did a login example for a backend service, here it is a frontend function that could make use of it:</p>
   
     <pre><code class="javascript post__code">
-
-    const login = async function(payload) {
-      startLoaderAnimation(); // start spinning while waiting for server response
-      try {
-        const token = await Api.login(payload); // submit the login and wait for the response
-        stopLoaderAnimation(); // stop the pinner, we got our token
-        // wait for a quick success message animation and contemporary save the token to the browser's cookies
-        await Promise.all([showSuccessMessage, setTokenToCookies(token)];
-        redirectToHomepage(); // redirect to home when both of the previous tasks are done
-      } catch (error) { // we got an error in the login, probably wrong username/password
-        stopLoaderAnimation(); // stop the spinning as above
-        await showFailureMessage(error); // show a quick error message animation
-        showUsefullTips(); // when the animation ends, display some tips like "you need help" or "forgot your password"
-      }
-    }
-
+const login = async function(payload) {
+  startLoaderAnimation(); // start spinning while waiting for server response
+  try {
+    const token = await Api.login(payload); // submit the login and wait for the response
+    stopLoaderAnimation(); // stop the pinner, we got our token
+    // wait for a quick success message animation and contemporary save the token to the browser's cookies
+    await Promise.all([showSuccessMessage, setTokenToCookies(token)];
+    redirectToHomepage(); // redirect to home when both of the previous tasks are done
+  } catch (error) { // we got an error in the login, probably wrong username/password
+    stopLoaderAnimation(); // stop the spinning as above
+    await showFailureMessage(error); // show a quick error message animation
+    showUsefullTips(); // when the animation ends, display some tips like "you need help" or "forgot your password"
+  }
+}
     </pre></code>
     <p class="post__caption">Frontend token-based auth with async await.</p>
   

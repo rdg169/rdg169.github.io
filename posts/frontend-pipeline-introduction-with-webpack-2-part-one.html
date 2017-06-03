@@ -142,12 +142,12 @@ window.cookieconsent.initialise({
     <p>Now we can start configuring webpack, but first you need to install it, of course, with <code>$ npm install webpack --save-dev</code>, then open <b>webpack.config.js</b> with your favorite editor and export an object as described in the docs:</p>
   
     <pre><code class="javascript post__code">
-      module.exports = {
-        entry: './app.js',
-        output: {
-          filename: 'bundle.js'
-        }
-      }
+module.exports = {
+  entry: './app.js',
+  output: {
+    filename: 'bundle.js'
+  }
+}
     </pre></code>
     <p class="post__caption">webpack.config.js</p>
   
@@ -163,16 +163,16 @@ window.cookieconsent.initialise({
     </ul>
   
     <pre><code class="javascript post__code">
-      // webpack.config.js
-      const path = require('path');
+// webpack.config.js
+const path = require('path');
 
-      module.exports = {
-        entry: './src/index.js',
-        output: {
-          filename: 'bundle.js',
-          path: path.resolve(__dirname, './dist')
-        }
-      }
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, './dist')
+  }
+}
     </pre></code>
     <p class="post__caption">webpack.config.js</p>
   
@@ -183,27 +183,27 @@ window.cookieconsent.initialise({
     <p>webpack allows us to use the import/export features contained in <a href="https://developer.mozilla.org//en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank">ES2015 module import</a> without the needs of babel or another transpiler, webpack itself takes care of wrapping that code into something usable by all browsers. We can proceed writing a couple functions and importing them in our index.js.</p>
   
     <pre><code class="javascript post__code">
-      // .src/javascript/utils.js
-      export function foo() { console.log('foo'); };
+// .src/javascript/utils.js
+export function foo() { console.log('foo'); };
 
-      export function bar() { console.log('bar'); };
+export function bar() { console.log('bar'); };
     </pre></code>
     <p class="post__caption">.src/javascript/utils.js</p>
   
     <pre><code class="javascript post__code">
-      // .src/javascript/index.js
-      import { foo, bar } from './utils.js';
+// .src/javascript/index.js
+import { foo, bar } from './utils.js';
 
-      foo();
-      bar();
+foo();
+bar();
     </pre></code>
     <p class="post__caption">.src/javascript/index.js</p>
   
     <p>Of course we also have to import all our javascript stuff in the assets' entry point, which is <code>./src/index.js</code></p>
   
     <pre><code class="javascript post__code">
-      // .src/index.js
-      import scripts from './javascript/'; // shortcut for './javascript/index.js'
+// .src/index.js
+import scripts from './javascript/'; // shortcut for './javascript/index.js'
     </pre></code>
     <p class="post__caption">.src/index.js</p>
   
@@ -214,11 +214,11 @@ window.cookieconsent.initialise({
     <p>webpack 2 ships with a really cool feature: it can detect unused imports and, more in general, unused code to produce a more efficient bundle, let's put it in practise:</p>
   
     <pre><code class="javascript post__code">
-      // .src/javascript/index.js
-      import { foo, bar } from './utils.js';
+// .src/javascript/index.js
+import { foo, bar } from './utils.js';
 
-      foo();
-      //bar(); we are importing bar, but actually not using it
+foo();
+//bar(); we are importing bar, but actually not using it
     </pre></code>
     <p class="post__caption">.src/javascript/index.js</p>
   
@@ -234,29 +234,29 @@ window.cookieconsent.initialise({
     <p>As written on the loader's docs, we need to install a couple of node_modules <code>$ npm install --save-dev babel-loader babel-core babel-preset-env</code> like that, then we need to edit our <b>webpack.config.js</b> file to configure in which files webpack has to apply the loader:</p>
   
     <pre><code class="javascript post__code">
-      // webpack.config.js
-      const path = require('path');
-      module.exports = {
-        entry: './src/index.js',
-        output: {
-          filename: 'bundle.js',
-          path: path.resolve(__dirname, './dist')
-        },
-        module: {
-          rules: [
-            {
-              test: /.js$/,
-              exclude: /node_modules/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: ['env']
-                }
-              }
-            }
-          ]
+// webpack.config.js
+const path = require('path');
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, './dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
         }
       }
+    ]
+  }
+}
     </pre></code>
     <p class="post__caption">webpack.config.js</p>
   

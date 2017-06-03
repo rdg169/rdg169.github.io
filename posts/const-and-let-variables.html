@@ -116,26 +116,26 @@ window.cookieconsent.initialise({
     <p>Let's make an example:</p>
   
     <pre><code class="javascript post__code">
-      if (true) {
-        // this is a block
-      }
+if (true) {
+  // this is a block
+}
 
-      if (true)
-        // this is not
+if (true)
+  // this is not
 
-      while (true) {
-        // this a block
-      }
+while (true) {
+  // this a block
+}
 
-      // a tricky one now
-      switch (name) {
-        case 'Mike': // NOT a block
-          ... some code
-          return true;
-        case 'Pit': { // a block
-          return false;
-        }
-      }
+// a tricky one now
+switch (name) {
+  case 'Mike': // NOT a block
+    ... some code
+    return true;
+  case 'Pit': { // a block
+    return false;
+  }
+}
     </pre></code>
     <p class="post__caption">recognise a javascript's block</p>
   
@@ -146,45 +146,45 @@ window.cookieconsent.initialise({
     <p>In javascript, indeed, all variables are in a <b>functional scope</b>, that means they exist only inside the function in which they are declared and, if they are not declared inside a function, they are <b>global variables</b>:</p>
   
     <pre><code class="javascript post__code">
-      var a = 1; // global scope
+var a = 1; // global scope
 
-      if (true) {
-        var a = 2; // global scope
-        var b = 1; // global scope
-      }
+if (true) {
+  var a = 2; // global scope
+  var b = 1; // global scope
+}
 
-      function foo() {
-        var b = 3; // functional scope
-        var c = 4; // functional scope
-        console.log(b);
-      }
-      console.log(b); // prints 1
-      foo(); // prints 3
-      console.log(a); // prints 2
-      console.log(b); // prints 3
-      //console.log(c); // throws and error
+function foo() {
+  var b = 3; // functional scope
+  var c = 4; // functional scope
+  console.log(b);
+}
+console.log(b); // prints 1
+foo(); // prints 3
+console.log(a); // prints 2
+console.log(b); // prints 3
+//console.log(c); // throws and error
     </pre></code>
     <p class="post__caption">functional and global scoped variables</p>
   
     <p>With const and let it is now also possible to achieve the concept of “local variable”, typical of other programming languages. Below an example of the same code using the let variable type (const behaves in the same way, with a little exception explained later in the article).</p>
   
     <pre><code class="javascript post__code">
-      let a = 1;
+let a = 1;
 
-      if (true) {
-        let a = 2;
-        let b = 1;
-      }
+if (true) {
+  let a = 2;
+  let b = 1;
+}
 
-      function foo() {
-        let b = 3;
-        console.log(b);
-      }
+function foo() {
+  let b = 3;
+  console.log(b);
+}
 
-      // console.log(b); throws an error, b is defined in a local scope not accessible for here.
-      foo(); // prints 3
-      console.log(a); // prints 1
-      // console.log(b); throws an error too, same reason as the previous one.
+// console.log(b); throws an error, b is defined in a local scope not accessible for here.
+foo(); // prints 3
+console.log(a); // prints 1
+// console.log(b); throws an error too, same reason as the previous one.
     </pre></code>
     <p class="post__caption">block scoped variables</p>
   
@@ -193,46 +193,46 @@ window.cookieconsent.initialise({
     <p>Regarding const, the main difference with let is that it identifies a constant variable, as you probably inferred, but with a peculiarity in case of array and objects values:</p>
   
     <pre><code class="javascript post__code">
-      const a = 1;
-      // a = 'foo'; throws an error
+const a = 1;
+// a = 'foo'; throws an error
 
-      const foo = function () {
-        // some code
-      };
-      // foo = function () { console.log('foo 2');} throws an error
+const foo = function () {
+  // some code
+};
+// foo = function () { console.log('foo 2');} throws an error
 
-      // object "special" case
-      const b = {};
-      b['a'] = 'a'; // that's fine
-      b['a'] = 'aa'; // that's fine too
-      b['a'] = {};
-      b['a']['b'] = 'b'; // also ok
-      console.log(b); // prints { a: { b: 'b' } }
-      // b = 'string'; throws an error
+// object "special" case
+const b = {};
+b['a'] = 'a'; // that's fine
+b['a'] = 'aa'; // that's fine too
+b['a'] = {};
+b['a']['b'] = 'b'; // also ok
+console.log(b); // prints { a: { b: 'b' } }
+// b = 'string'; throws an error
 
-      // array "special" case
-      const c = [];
-      c.push('a'); // that's fine
-      c[0] = b; // fine too
-      c[0] = { a: 'a' }; // still ok
-      // all array operations are allowed
-      // c = 'foo' throws an error though
+// array "special" case
+const c = [];
+c.push('a'); // that's fine
+c[0] = b; // fine too
+c[0] = { a: 'a' }; // still ok
+// all array operations are allowed
+// c = 'foo' throws an error though
     </pre></code>
     <p class="post__caption">const variable type</p>
   
     <p>Rule of thumb for choosing between const and let: use const unless the value of your variable is going to change in some part of your code, here's some common use cases:</p>
   
     <pre><code class="javascript post__code">
-      for (let index = 0; index < array.length; index++) { } // counter of a for loop is a let, of course
+for (let index = 0; index < array.length; index++) { } // counter of a for loop is a let, of course
 
-      const package = require('package'); // package import should be const
+const package = require('package'); // package import should be const
 
-      // dynamic-keys object should be const
-      const ajaxFormPayload = {};
-      ajaxFormPayload['email'] = 'email@mail.it';
-      ajaxFormPayload['password'] = 'password';
+// dynamic-keys object should be const
+const ajaxFormPayload = {};
+ajaxFormPayload['email'] = 'email@mail.it';
+ajaxFormPayload['password'] = 'password';
 
-      const foo = function(arg1, arg2) {} // anonymous functions should be assigned to const variable;
+const foo = function(arg1, arg2) {} // anonymous functions should be assigned to const variable;
     </pre></code>
     <p class="post__caption">const and let use cases</p>
   
