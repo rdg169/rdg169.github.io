@@ -22,28 +22,28 @@
 
    <url>
       <loc>http://www.webdeveloperthoughts.com/posts/const-and-let-variables.html</loc>
-      <lastmod>2017-05-26</lastmod>
-      <changefreq>yearly</changefreq>
+      <lastmod>2017-06-04</lastmod>
+      <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
 
    <url>
       <loc>http://www.webdeveloperthoughts.com/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html</loc>
-      <lastmod>2017-05-26</lastmod>
-      <changefreq>monthly</changefreq>
+      <lastmod>2017-06-04</lastmod>
+      <changefreq>weekly</changefreq>
       <priority>0.7</priority>
    </url>
 
    <url>
       <loc>http://www.webdeveloperthoughts.com/posts/frontend-pipeline-introduction-with-webpack-2-part-two.html</loc>
-      <lastmod>2017-05-26</lastmod>
-      <changefreq>monthly</changefreq>
+      <lastmod>2017-06-04</lastmod>
+      <changefreq>weekly</changefreq>
       <priority>0.7</priority>
    </url>
    <url>
       <loc>http://www.webdeveloperthoughts.com/posts/javascript-promises-guide-using-async-await.html</loc>
-      <lastmod>2017-06-01</lastmod>
-      <changefreq>monthly</changefreq>
+      <lastmod>2017-06-04</lastmod>
+      <changefreq>weekly</changefreq>
       <priority>0.7</priority>
    </url>
 </urlset> 
