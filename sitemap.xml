@@ -46,4 +46,22 @@
       <changefreq>weekly</changefreq>
       <priority>0.7</priority>
    </url>
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/nodejs-flat-cms-tutorial-with-endurojs.html</loc>
+      <lastmod>2017-09-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/nodejs-fs-write-to-file-tutorial.html</loc>
+      <lastmod>2017-09-08</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/nodejs-fs-read-file-tutorial.html</loc>
+      <lastmod>2017-09-08</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
 </urlset> 

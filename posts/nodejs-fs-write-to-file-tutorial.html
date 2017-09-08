@@ -1,0 +1,214 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="320" name="MobileOptimized">
+  <meta content="gdi" http-equiv="X-UA-TextLayoutMetrics">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="#009EDD" name="theme-color">
+  <meta name="HandheldFriendly" content="true"/>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>Nodejs fs write to file tutorial | Web Developer&#39;s Thoughts</title>
+  <meta name="description" content="Basic guide on how to use node.js fs to write to file.">
+  <meta name="keywords" content="Node.js fs write to file tutorial">
+  <meta name="author" content="Giovanni Rodighiero">
+
+  <meta property="og:title" content="Nodejs fs write to file tutorial | Web Developer&#39;s Thoughts" />
+  <meta property="og:description" content="Basic guide on how to use node.js fs to write to file." />
+  <meta property="og:type" content="blog" />
+  <meta property="og:url" content="webdeveloperthoughts.com/posts/nodejs-fs-write-to-file-tutorial.html" />
+  <meta property="og:image" content="webdeveloperthoughts.com/images/og_image.jpg" />
+
+  
+  
+  <link rel="stylesheet" href="/main.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <link async rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script async src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  },
+  "theme": "edgeless",
+  "position": "bottom-right"
+})});
+</script>
+</head>
+
+<body>
+  
+  <header class="site-header">
+  <div class="site-header__left">
+    <p class="site-header__title">
+      <a href="/" class="site-header__logo-link">
+        Web developer&#39;s thoughts
+      </a>
+    </p>
+    <a href="/" class="site-header__logo-link">
+      <abbr title="Web developer&#39;s thoughts" class="site-header__short-title">W.D.T.</abbr>
+    </a>
+  </div>
+  <nav class="site-nav">
+    <ul class="site-nav__list">
+      
+        
+          <li class="site-nav__list-item">
+            <a class="site-nav__link" href="/posts.html">Posts</a>
+          </li>
+        
+      
+        
+          <li class="site-nav__list-item">
+            <a class="site-nav__link" href="/about.html">About</a>
+          </li>
+        
+      
+    </ul>
+  </nav>
+</header>
+
+
+  <main>
+    
+  <article>
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs">
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/" class="breadcrumbs__link">
+          <span itemprop="name">Home</span></a>
+        <span itemprop="position" content="1">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/posts.html" class="breadcrumbs__link">
+          <span itemprop="name">Posts</span></a>
+        <span itemprop="position" content="2">&gt;</span>
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+        <a itemprop="item" href="/posts/nodejs-fs-write-to-file-tutorial.html" class="breadcrumbs__link">
+          <span itemprop="name">Nodejs fs write to file tutorial</span>
+        </a>
+      </li>
+    </ol>
+    <section class="post-hero">
+  <h1 class="post-hero__title">Nodejs fs write to file tutorial</h1>
+  <h2 class="post-hero__subtitle">Basic guide on how to use node.js fs to write to file.</h2>
+</section>
+    <section class="post">
+  
+    <h3>Prologue</h3>
+  
+    <p>Node.js provide a code library called <code>fs</code> to manipulate files, like writing and reading utilities, in this simple tutorial we are going to write contents on some files.</p>
+  
+    <h3>Write to file with fs.writeFile</h3>
+  
+    <p>Suppose we have a project structure like this one:</p>
+  
+    <pre><code class="javascript post__code">
+- index.js // file
+- /contents // folder
+    - foo // file
+    </pre></code>
+    <p class="post__caption">project structure</p>
+  
+    <p>We would like to write contents in <code>foo</code> through a script placed in <code>index.js</code> and we can easily achive that by doing:</p>
+  
+    <pre><code class="javascript post__code">const fs = require('fs');
+
+fs.writeFile('./contents/foo', 'file contents', err => {
+  if (err)
+    console.log(err);
+});
+</pre></code>
+<p class="post__caption">fs write to file</p>
+  
+    <p>Thinks to know about <code>fs.writeFile</code>:
+<ul>
+  <li>The first argument is the relative path to the file you want to write in;</li>
+  <li>The second one is the actual contents to write;</li>
+  <li>The third argument is a callback function since <code>writeFile</code> is asynchronous;</li>
+  <li>Also take care that <code>writeFile</code> <b>replaces</b> the content, to append new text on a file you can use <code>appendFile</code>.</li>
+</ul>
+</p>
+  
+    <h3>Append to file with fs.appendFile</h3>
+  
+    <p>Append data to a file is just like write to it, as shown in this example</p>
+  
+    <pre><code class="javascript post__code">const fs = require('fs');
+
+  fs.writeFile('./contents/foo', 'file contents', writeErr => {
+    if (!writeErr)
+      fs.appendFile('./contents/foo', 'more file contents !', appendErr => {
+        if (appendErr)
+          console.log(appendErr);
+      });
+    else
+      console.log(writeErr);
+  });
+  </pre></code>
+  <p class="post__caption">fs append to file</p>
+  
+    <p>Here fist we write some contents in the <code>foo</code> file like we did in the previous example, then we add some other content to it using <code>fs.appendFile</code>. Finally note that all code is asynchronous in order to obtain better performance.</p>
+  
+    <p>Remember to checkout also my other tutorial on <a href="/posts/nodejs-fs-read-file-tutorial.html">nodejs fs read file</a>.</p>
+  
+</section>
+    <section class="post-footer">
+  <p class="post-footer__signature">Posted by <a href="/about.html">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-09-8T20:46:35+02:00">8 September 2017</time></p>
+</section>
+  </article>
+
+  </main>
+  
+    <footer class="footer">
+  <ul class="footer-sitemap">
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/">Homepage</a>
+      </li>
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/posts.html">Posts</a>
+      </li>
+    
+      <li class="footer-sitemap__item">
+        <a class="footer-sitemap__link" href="/about.html">About</a>
+      </li>
+    
+  </ul>
+
+  <ul class="footer-policies">
+    <li class="footer-policies__item">
+    <a href="//www.iubenda.com/privacy-policy/8135513" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </li>
+  </ul>
+  <div class="footer__signature">
+    <p></p>
+  </div>
+</footer>
+  
+
+  <script src="/bundle.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99978588-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
