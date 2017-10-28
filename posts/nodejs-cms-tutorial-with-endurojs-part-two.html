@@ -10,15 +10,15 @@
   <meta content="#009EDD" name="theme-color">
   <meta name="HandheldFriendly" content="true"/>
   <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  <title>Nodejs fs write to file tutorial | Web Developer&#39;s Thoughts</title>
-  <meta name="description" content="Basic guide on how to use node.js fs to write to file.">
-  <meta name="keywords" content="Node.js fs write to file tutorial">
+  <title>Node.js CMS Tutorial with Enduro.js - Part Two | Web Developer&#39;s Thoughts</title>
+  <meta name="description" content="Second part of a tutorial on how to get started with with Enduro.js, a Node.js flat CMS.">
+  <meta name="keywords" content="node.js cms enduro.js part two">
   <meta name="author" content="Giovanni Rodighiero">
 
-  <meta property="og:title" content="Nodejs fs write to file tutorial | Web Developer&#39;s Thoughts" />
-  <meta property="og:description" content="Basic guide on how to use node.js fs to write to file." />
+  <meta property="og:title" content="Node.js CMS Tutorial with Enduro.js - Part Two | Web Developer&#39;s Thoughts" />
+  <meta property="og:description" content="Second part of a tutorial on how to get started with with Enduro.js, a Node.js flat CMS." />
   <meta property="og:type" content="blog" />
-  <meta property="og:url" content="webdeveloperthoughts.com/posts/nodejs-fs-write-to-file-tutorial.html" />
+  <meta property="og:url" content="webdeveloperthoughts.com/posts/nodejs-cms-tutorial-with-endurojs-part-two.html" />
   <meta property="og:image" content="webdeveloperthoughts.com/images/og_image.jpg" />
 
   
@@ -95,73 +95,96 @@ window.cookieconsent.initialise({
         <span itemprop="position" content="2">&gt;</span>
       </li>
       <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
-        <a itemprop="item" href="/posts/nodejs-fs-write-to-file-tutorial.html" class="breadcrumbs__link">
-          <span itemprop="name">Nodejs fs write to file tutorial</span>
+        <a itemprop="item" href="/posts/nodejs-cms-tutorial-with-endurojs-part-two.html" class="breadcrumbs__link">
+          <span itemprop="name">Node.js flat CMS Tutorial with Enduro.js - Part Two</span>
         </a>
       </li>
     </ol>
     <section class="post-hero">
-  <h1 class="post-hero__title">Nodejs fs write to file tutorial</h1>
-  <h2 class="post-hero__subtitle">Basic guide on how to use node.js fs to write to file.</h2>
+  <h1 class="post-hero__title">Node.js flat CMS Tutorial with Enduro.js - Part Two</h1>
+  <h2 class="post-hero__subtitle">Second part of a tutorial on how to get started with with Enduro.js, a Node.js flat CMS.</h2>
 </section>
     <section class="post">
   
     <h3>Prologue</h3>
   
-    <p>Node.js provide a code library called <code>fs</code> to manipulate files, like writing and reading utilities, in this simple tutorial we are going to write contents on some files.</p>
+    <p>In the <a href="/posts/nodejs-cms-tutorial-with-endurojs.html" target="_blank">first part</a> of this tutorial we saw how to configure Enduro.js admin panel to manage a nested structure like meta-tags contents, in this second part we are going to add the configuration for the page's sections.</p>
   
-    <h3>Write to file with fs.writeFile</h3>
+    <p>Let's say that our page has three type of sections, graphically speaking:</p>
   
-    <p>Suppose we have a project structure like this one:</p>
+    <ul>
+      <li>First type is an full width image with a fancy text and a link, we are calling this section-type <b>cta_type</b>, where cta stands for Call to Action;</li>
+      <li>Second type is made up by a title, a subtitle, and a paragraph, we are calling this section-type <b>textOnly_type</b>;</li>
+      <li>Third type is an image with a text on the right side, we are calling this section-type <b>textWithImage_type</b>.</li>
+    </ul>
+  
+    <p>We would like to provide our client, or whoever is going to manage the site, the possibility of adding, removing and ordering these section-elements within the page, in order to achieve this we are going to structure the page's section as an array of contents, each of them will be one of the three types described above.</p>
+  
+    <h3>Handling array with templatitator</h3>
+  
+    <p>Handling array is pretty simple, but we want to handle array of object made of a certain structure, so we need a little more of configuration, first we are going to declare in the <code>/cms/index.js</code> file which structures are available for the user, in our case the three section-types.</p>
   
     <pre><code class="javascript post__code">
-- index.js // file
-- /contents // folder
-    - foo // file
-    </pre></code>
-    <p class="post__caption">project structure</p>
-  
-    <p>We would like to write contents in <code>foo</code> through a script placed in <code>index.js</code> and we can easily achive that by doing:</p>
-  
-    <pre><code class="javascript post__code">const fs = require('fs');
+{
+  $section_types_hidden: true,
+  section_types: {
+    cta_type: {
+        section_type: 'Image with CTA',
 
-fs.writeFile('./contents/foo', 'file contents', err => {
-  if (err)
-    console.log(err);
-});
+        $image_type: 'image',
+        $image_label: 'image',
+        image: '',
+
+        $text_label: 'text',
+        text: '',
+
+        $link_label: 'url',
+        link: '',
+    },
+    textOnly_type: {
+      section_type: 'Text Only',
+
+      $title_label: 'title',
+      title: '',
+
+      $subtitle_label: 'title',
+      subtitle: '',
+
+      $paragraph_type: 'textarea',
+      $paragraph_label: 'paragraph',
+      paragraph: '',
+    },
+    textWithImage_type: {
+      section_type: 'Text with Image',
+
+      $image_type: 'image',
+      $image_label: 'image',
+      image: '',
+
+      $text_type: 'textarea',
+      $text_label: 'text',
+      text: ''
+    }
+  }
+}
 </pre></code>
-<p class="post__caption">fs write to file</p>
+<p class="post__caption">section types config</p>
   
-    <p>Thinks to know about <code>fs.writeFile</code>:
-<ul>
-  <li>The first argument is the relative path to the file you want to write in;</li>
-  <li>The second one is the actual contents to write;</li>
-  <li>The third argument is a callback function since <code>writeFile</code> is asynchronous;</li>
-  <li>Also take care that <code>writeFile</code> <b>replaces</b> the content, to append new text on a file you can use <code>appendFile</code>.</li>
-</ul>
-</p>
+    <p>Here we configured the structure of the three section types we allow, specifying that it should be hidden in the admin, because it is not a direct editable field, but just a kind of support structure. Indeed the next step is to tell the admin that we have an array of those structures:</p>
   
-    <h3>Append to file with fs.appendFile</h3>
+    <pre><code class="javascript post__code">
+{
+  $sections_templatitator: '@@section_types',
+  sections: []
+}
+</pre></code>
+<p class="post__caption">templatitator config</p>
   
-    <p>Append data to a file is just like write to it, as shown in this example</p>
+    <p>The templatitator keyword specify exactly that the array referenced (sections) is made of defined structures, which ones ? Well <code>section_types</code> ones (the @@ is a sort of keyword you need to write in front of the structure name).</p>
   
-    <pre><code class="javascript post__code">const fs = require('fs');
-
-  fs.writeFile('./contents/foo', 'file contents', writeErr => {
-    if (!writeErr)
-      fs.appendFile('./contents/foo', 'more file contents !', appendErr => {
-        if (appendErr)
-          console.log(appendErr);
-      });
-    else
-      console.log(writeErr);
-  });
-  </pre></code>
-  <p class="post__caption">fs append to file</p>
+    <h3>Conclusions</h3>
   
-    <p>Here fist we write some contents in the <code>foo</code> file like we did in the previous example, then we add some other content to it using <code>fs.appendFile</code>. Finally note that all code is asynchronous in order to obtain better performance.</p>
-  
-    <p>Remember to checkout also my other tutorial on <a href="/posts/nodejs-fs-read-file-tutorial.html">nodejs fs read file</a>.</p>
+    <p>If you run your app now you will see three buttons on the <code>section</code> field, one for each type of section, so the user can manage them easily, adding removing and ordering, exactly like we wanted.</p>
   
 </section>
     <section class="previews">
@@ -190,26 +213,6 @@ fs.writeFile('./contents/foo', 'file contents', err => {
     
       <article class="preview">
         <header class="preview__header">
-          <h4 class="preview__title">Node.js flat CMS Tutorial with Enduro.js - Part Two</h4>
-          <p class="preview__short-descr">Second part of a tutorial on how to get started with with Enduro.js, a Node.js flat CMS.</p>
-        </header>
-        <div class="preview__tags">
-          <p class="preview__tag-intro"> Tags: 
-          
-            <span class="preview__tag">Node.js</span>
-          
-            <span class="preview__tag">CMS</span>
-          
-          </p>
-        </div>
-        <a class="preview__cta button" href="/posts/nodejs-cms-tutorial-with-endurojs-part-two.html">Read more</a>
-        <footer class="preview__footer">
-          <p class="preview__signature">Posted by <a href="">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-09-8T20:46:35+02:00">8 September 2017</time></p>
-        </footer>
-      </article>
-    
-      <article class="preview">
-        <header class="preview__header">
           <h4 class="preview__title">Frontend pipeline with webpack 2: setting up babel (1 of 2)</h4>
           <p class="preview__short-descr">An introduction about frontend pipeline in 2017 and how to build one from scratch using webpack 2: setting up babel traspiler.</p>
         </header>
@@ -223,6 +226,28 @@ fs.writeFile('./contents/foo', 'file contents', err => {
         <a class="preview__cta button" href="/posts/frontend-pipeline-introduction-with-webpack-2-part-one.html">Read more</a>
         <footer class="preview__footer">
           <p class="preview__signature">Posted by <a href="">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-04-30T17:46:35+02:00">30 April 2017</time></p>
+        </footer>
+      </article>
+    
+      <article class="preview">
+        <header class="preview__header">
+          <h4 class="preview__title">Javascript promises guide: using async await in both frontend and backend</h4>
+          <p class="preview__short-descr">A guide about javascript promises, what they are and how to use them effectively with async await.</p>
+        </header>
+        <div class="preview__tags">
+          <p class="preview__tag-intro"> Tags: 
+          
+            <span class="preview__tag">JavaScript</span>
+          
+            <span class="preview__tag">ES6</span>
+          
+            <span class="preview__tag">Node.js</span>
+          
+          </p>
+        </div>
+        <a class="preview__cta button" href="/posts/javascript-promises-guide-using-async-await.html">Read more</a>
+        <footer class="preview__footer">
+          <p class="preview__signature">Posted by <a href="">Giovanni Rodighiero</a> on <time class="preview__date" datetime="2017-06-1T15:32:35+02:00">1 June 2017</time></p>
         </footer>
       </article>
     

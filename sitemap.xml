@@ -53,6 +53,12 @@
       <priority>0.7</priority>
    </url>
    <url>
+      <loc>http://www.webdeveloperthoughts.com/posts/nodejs-cms-tutorial-with-endurojs-part-two.html</loc>
+      <lastmod>2017-10-28</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
       <loc>http://www.webdeveloperthoughts.com/posts/nodejs-fs-write-to-file-tutorial.html</loc>
       <lastmod>2017-09-08</lastmod>
       <changefreq>weekly</changefreq>
